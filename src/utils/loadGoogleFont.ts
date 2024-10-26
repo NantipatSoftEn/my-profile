@@ -56,6 +56,18 @@ async function loadGoogleFonts(
       weight: 700,
       style: "bold",
     },
+    {
+      name: "IBM Plex Sans Thai Looped",
+      font: "IBM+Plex+Sans+Thai+Looped",
+      weight: 400,
+      style: "normal",
+    },
+    {
+      name: "IBM Plex Sans Thai Looped",
+      font: "IBM+Plex+Sans+Thai+Looped:wght@700",
+      weight: 700,
+      style: "bold",
+    },
   ];
 
   const fonts = await Promise.all(
