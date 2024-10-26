@@ -19,3 +19,4 @@ title: "Stay Connected"
 
 - [medium](https://nantipatsoften.medium.com/)
 - [dev.io](https://dev.to/nantipatsoften)
+- [relationWithGod](https://nantipatsoften.medium.com/)
