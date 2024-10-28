@@ -10,8 +10,8 @@ import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
 
 export interface Props {
-  post: CollectionEntry<"blog">;
-  posts: CollectionEntry<"blog">[];
+  post: CollectionEntry<"blog" | "note">;
+  posts: CollectionEntry<"blog" | "note">[];
 }
 
 const { post, posts } = Astro.props;
@@ -53,7 +53,7 @@ const allPosts = posts.map(({ data: { title }, slug }) => ({
   title,
 }));
 
-const currentPostIndex = allPosts.findIndex(a => a.slug === post.slug);
+const currentPostIndex = allPosts.findIndex((a) => a.slug === post.slug);
 
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
@@ -88,7 +88,7 @@ const nextPost =
     </article>
 
     <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+      {tags.map((tag) => <Tag tag={slugifyStr(tag)} />)}
     </ul>
 
     <div
