@@ -7,7 +7,7 @@ slug: test-note
 featured: true
 draft: false
 tags:
-  - docs
+  - god
 description:
   Some rules & recommendations for creating or adding new posts using AstroPaper
   theme.
