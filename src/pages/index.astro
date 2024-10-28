@@ -9,6 +9,7 @@ import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import {getSortedPosts} from "@utils/getSortedPosts";
 import { SITE, SOCIALS } from "@config";
+import BottomNarbar from "@components/BottomNarbar";
 
 const posts = await getCollection("blog");
 
@@ -22,6 +23,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
 <Layout>
   <Header />
+  <BottomNarbar />
   <main id="main-content">
     <section id="hero">
       <h1>NantipatSoftEn</h1>
