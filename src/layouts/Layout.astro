@@ -1,20 +1,20 @@
 ---
-import { LOCALE, SITE } from "@config";
-import "@styles/base.css";
-import { ViewTransitions } from "astro:transitions";
+import { LOCALE, SITE } from '@config'
+import '@styles/base.css'
+import { ViewTransitions } from 'astro:transitions'
 
-const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION
 
 export interface Props {
-  title?: string;
-  author?: string;
-  profile?: string;
-  description?: string;
-  ogImage?: string;
-  canonicalURL?: string;
-  pubDatetime?: Date;
-  modDatetime?: Date | null;
-  scrollSmooth?: boolean;
+  title?: string
+  author?: string
+  profile?: string
+  description?: string
+  ogImage?: string
+  canonicalURL?: string
+  pubDatetime?: Date
+  modDatetime?: Date | null
+  scrollSmooth?: boolean
 }
 
 const {
@@ -27,34 +27,34 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
-} = Astro.props;
+} = Astro.props
 
 const socialImageURL = new URL(
-  ogImage ?? SITE.ogImage ?? "og.png",
+  ogImage ?? SITE.ogImage ?? 'og.png',
   Astro.url.origin
-).href;
+).href
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
   headline: `${title}`,
   image: `${socialImageURL}`,
   datePublished: `${pubDatetime?.toISOString()}`,
   ...(modDatetime && { dateModified: modDatetime.toISOString() }),
   author: [
     {
-      "@type": "Person",
+      '@type': 'Person',
       name: `${author}`,
       url: `${profile}`,
     },
   ],
-};
+}
 ---
 
 <!doctype html>
 <html
   lang=`${LOCALE.lang ?? "en"}`
-  class={`${scrollSmooth && "scroll-smooth"}`}
+  class={`${scrollSmooth && 'scroll-smooth'}`}
 >
   <head>
     <meta charset="UTF-8" />
@@ -112,6 +112,14 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      rel="preload"
+      as="style"
+      onload="this.onload=null; this.rel='stylesheet';"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="preload"
       as="style"
       onload="this.onload=null; this.rel='stylesheet';"

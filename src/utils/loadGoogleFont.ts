@@ -76,7 +76,6 @@ async function loadGoogleFonts(
       return { name, data, weight, style };
     })
   );
-
   return fonts;
 }
 

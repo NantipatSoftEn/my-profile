@@ -56,6 +56,7 @@ module.exports = {
       },
       fontFamily: {
         mono: ["IBM Plex Mono","IBM Plex Sans Thai Looped"],
+        thai:["IBM Plex Sans Thai Looped"]
       },
 
       typography: {
