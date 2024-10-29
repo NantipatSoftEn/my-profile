@@ -1,24 +1,23 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import {getSortedPosts} from "@utils/getSortedPosts";
-import { SITE, SOCIALS } from "@config";
-import BottomNarbar from "@components/BottomNarbar";
+import { getCollection } from 'astro:content'
+import Layout from '@layouts/Layout.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import LinkButton from '@components/LinkButton.astro'
+import Hr from '@components/Hr.astro'
+import Card from '@components/Card'
+import Socials from '@components/Socials.astro'
+import { getSortedPosts } from '@utils/getSortedPosts'
+import { SITE, SOCIALS } from '@config'
+import BottomNarbar from '@components/BottomNarbar'
 
-const posts = await getCollection("blog");
+const posts = await getCollection('blog')
 
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const sortedPosts = getSortedPosts(posts)
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured)
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured)
 
-const socialCount = SOCIALS.filter(social => social.active).length;
-  
+const socialCount = SOCIALS.filter(social => social.active).length
 ---
 
 <Layout>
@@ -26,12 +25,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <BottomNarbar />
   <main id="main-content">
     <section id="hero">
-      <h1>Nantipat   <img src="/assets/redcross.png" class="sm:w-1/2 mx-auto" alt="orochimaru">
-      </h1>
-      <img src="/assets/pigeon.png" class="sm:w-1/2 mx-auto" alt="orochimaru">
-      <p>
-        I write about Software Engineer, Christian, Trading, Dota2
-      </p>
+      <h1>Nantipat</h1>
+      <img
+        src="/assets/redcross.png"
+        class="w-46 h-48 object-scale-down"
+        alt="orochimaru"
+      />
+      <p>I write about Software Engineer, Christian, Trading, Dota2</p>
 
       {
         // only display if at least one social link is enabled
