@@ -6,7 +6,7 @@ export const SITE: Site = {
   profile: "",
   desc: "share knowledge and experience",
   title: "NantipatSoftEn",
-  ogImage: "orochimaru15.png",
+  ogImage: "/asserts/orochimaru15.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 3,
