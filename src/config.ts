@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://www.codegeassmasterzeronebreakoutr1r2.codes", // replace this with your deployed domain
+  website: "https://nantipatsoften.github.io/", // replace this with your deployed domain
   author: "NantipatSoftEn",
   profile: "",
   desc: "share knowledge and experience",
