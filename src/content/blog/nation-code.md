@@ -94,3 +94,6 @@ Intrrumental COmnvergent
 AI มันจะฉลาดจนไม่ยอมปิดตัวเองได้
 
 ​intervester ลงเงินไปเยอะ อยากได้กำไรจาก AI ยังไง
+
+## Just stat Coding from web
+
