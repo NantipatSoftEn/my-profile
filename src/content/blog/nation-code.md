@@ -95,5 +95,6 @@ AI มันจะฉลาดจนไม่ยอมปิดตัวเอ�
 
 ​intervester ลงเงินไปเยอะ อยากได้กำไรจาก AI ยังไง
 
-## Just stat Coding from web
-
+## มีคนสรุปมาให้
+- [จดๆจากงาน National Coding Day 2024: Conference Day bynaiwaen@DebuggingSoft](https://naiwaen.debuggingsoft.com/2024/12/recap-from-national-coding-day-2024-conference-day/?fbclid=IwY2xjawHBJLdleHRuA2FlbQIxMQABHQdbkMqh9Bb_00acdZ15NQ5wnExgAR4OTvc621gqJkK6qIupzDtUImyj7g_aem_Xd04zfwrDBdtMXWrUaQTkA)
+- [Full stack testing :: basic to basic](https://speakerdeck.com/up1/full-stack-testing-basic-to-basic)
