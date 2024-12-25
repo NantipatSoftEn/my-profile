@@ -3,7 +3,7 @@ import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-  type: "content_layer",
+  // type: "content_layer",
   loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: ({ image }) =>
     z.object({
@@ -27,7 +27,6 @@ const blog = defineCollection({
 
 
 const note = defineCollection({
-  type: "content_layer",
   loader: glob({ pattern: "**/*.md", base: "./src/content/note" }),
   schema: ({ image }) =>
     z.object({

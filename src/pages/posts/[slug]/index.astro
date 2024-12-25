@@ -6,12 +6,12 @@ import {getSortedPosts} from "@utils/getSortedPosts";
 export interface Props {
   post: CollectionEntry<"blog">;
 }
-
+ 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
 
   const postResult = posts.map(post => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 
