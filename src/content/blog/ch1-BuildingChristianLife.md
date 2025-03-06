@@ -10,8 +10,11 @@ description:  จดบันทึกบทเรียน
 ---
 
 ---
+![ifJesusDeadWhy](/assets/ifJesusDeadWhy.png)
 
 https://codegeassmasterzeronebreakoutr1r2.codes/assets/ifJesusDeadWhy.png
+
+![summarych1BuildingChristianLife.png](/assets/summarych1BuildingChristianLife.png)
 
 https://codegeassmasterzeronebreakoutr1r2.codes/assets/summarych1BuildingChristianLife.png
 
