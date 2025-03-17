@@ -1,8 +1,7 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: 'About'
 ---
-
 
 <div>
  <img src="/assets/redcross.png" class="w-46 h-48 object-scale-down" alt="redcross"/>

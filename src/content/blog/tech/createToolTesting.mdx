@@ -1,69 +1,69 @@
 ---
-author:  Army
+author: Army
 pubDatetime: 2024-12-24T13:15:00
 modDatetime: 2024-12-24T13:15:00
 
-title: DiaryCoding:CreateToolTesting 
+title: DiaryCoding:CreateToolTesting
 slug: creatToolTesting
-featured: false
+featured: true
 tags:
-  - tech
-  - code
-description:  ผมได้ทำ tool ตัวนึงที่ไว้ใช้ในการทดสอบ code เลยอยากจะบันทึกส่วนนึงไว้หน่อย
-
+    - tech
+    - code
+description: ผมได้ทำ tool ตัวนึงที่ไว้ใช้ในการทดสอบ code เลยอยากจะบันทึกส่วนนึงไว้หน่อย
 ---
 
-## Story 
+## Story
 
-ผมได้รับมอบหมายโปรเจคตัวนึงให้ทำ ​API  ที่จะต้อง import file excel เขามาเพื่อ validate ข้อมูล และ response 
-กลับไปว่าข้อมูลที่ import เขามานั้นถูกต้องไหมมีอะไรผิดบ้างเป็น  error อะไรบ้างเป็น text ไฟล์ส่งเขา email ของ user 
+ผมได้รับมอบหมายโปรเจคตัวนึงให้ทำ ​API ที่จะต้อง import file excel เขามาเพื่อ validate ข้อมูล และ response
+กลับไปว่าข้อมูลที่ import เขามานั้นถูกต้องไหมมีอะไรผิดบ้างเป็น error อะไรบ้างเป็น text ไฟล์ส่งเขา email ของ user
 ซึ่งประเภทไฟล์มีหลายประเภท และข้อมูลที่ต้อง validate ก็มีหลายประเภท และมีหลายเงื่อนไข ที่ต้อง validate ด้วย
 แต่ยังดีที่แต่ละประเภทไฟล์นั้นแม้มีประเภทที่แตกต่างกันแต่กฎเกณฑ์การ validate ก็มีบางส่วนที่เหมือนกันทำให้ผมสามารถ design function ขึ้นมา reuse ไม่สามารถส่งอีเมลได้
-​ 
-## Problem 
+​
+
+## Problem
 
 แต่ปัญหาก็คือ การที่ผมต้องทดสอบ function ที่มีหลายเงื่อนไข และหลายประเภทไฟล์ ทำให้ผมต้องทดสอบด้วยมือ และเสียเวลาเป็นเวลานาน
 ด้วยความที่ว่าการทำ unit test ก็เสียเวลาในช่วงแรกแต่จะคุ้มในระยะยาวในทีมก็ไม่มีเวลาให้ผมมากแถม requirment ก็เปลี่ยนบ่อย ทำให้ผมต้องทดสอบ function นี้บ่อย
-และด้วยความยุ่งยากในการที่จะต้องเขียน mock request และต่อ connection ต่างๆให้ครบ ด้วยประสบการณ์เท่าที่ผมมี  ผมคิดว่าเกรงจะไม่ทันด้วยเวลาที่จำกัด 
+และด้วยความยุ่งยากในการที่จะต้องเขียน mock request และต่อ connection ต่างๆให้ครบ ด้วยประสบการณ์เท่าที่ผมมี ผมคิดว่าเกรงจะไม่ทันด้วยเวลาที่จำกัด
 
 ผมเลยเขียน function validation ให้เล็กที่สุดและไม่ให้มันขึ้นกับอะไรเลย เพื่อจะได้ mannul test ด้วยมือโดยการสร้าง mock แล้วโยนเขาฟังก์ชั้นไว้เทสข้างนอกได้แบบเร็วๆ
 ซึ่งมันแก้ปัญหาได้ ผมทำ function validation ชุดนึงที่สามารถนำมาใช้งานได้
 
 แต่ปัญหาต่อมาคือเรามีหลายๆ testcase ของแต่ละประเภทไฟล์ที่จะต้องทดสอบ และเราต้องทดสอบด้วยมือ ทำให้เราต้องทดสอบด้วยมือเป็นเวลานาน และเราต้องทดสอบด้วยมือทุกครั้งที่มีการเปลี่ยนแปลง
-กว่าจะ import file เข้ามา ผมลืมบอกไปว่าจะต้องมีการ update status file ใน database ด้วยว่า success หรือ fail     
+กว่าจะ import file เข้ามา ผมลืมบอกไปว่าจะต้องมีการ update status file ใน database ด้วยว่า success หรือ fail
 
-ผมเลยตั้งสติแปปนึง ว่าเราจะต้องทำอย่างไรให้มันเร็วขึ้น และไม่ต้องทดสอบด้วยมือทุกครั้งที่มีการเปลี่ยนแปลง 
+ผมเลยตั้งสติแปปนึง ว่าเราจะต้องทำอย่างไรให้มันเร็วขึ้น และไม่ต้องทดสอบด้วยมือทุกครั้งที่มีการเปลี่ยนแปลง
 
-## Solution 
+## Solution
 
-ตอนนั้นที่ผมคิดได้คือ ใน procress  ปกติ เราแปลง data ใน .xlsx เป็น json  
-ผมเลยทำ mock file  แต่ละ testcase ของ แต่ละประเภทไฟล์เพื่อจะจำลองสถานกาณณ์ที่เป็นไปได้ทั้งหมด 
+ตอนนั้นที่ผมคิดได้คือ ใน procress ปกติ เราแปลง data ใน .xlsx เป็น json  
+ผมเลยทำ mock file แต่ละ testcase ของ แต่ละประเภทไฟล์เพื่อจะจำลองสถานกาณณ์ที่เป็นไปได้ทั้งหมด
 
 `mock/testCaseNewPeople/shouldSuccess.js`
 `mock/testCaseNewPeople/shouldFailMissingValue.js`
 
 `mock/testCaseNewDepartment/shouldSuccess.js`
 `mock/testCaseNewDepartment/shouldFailDuplicateValue.js`
- 
 
 แล้วผมทำ flag ลับตัวนึงไว้ใช้เทส
 
 ```typescript
-const getTestCase = (nameService:string,testCase:string) => {
-  const testCase = require(`./mock/${nameService}/${testCase}.js`)
-  return testCase
+const getTestCase = (nameService: string, testCase: string) => {
+    const testCase = require(`./mock/${nameService}/${testCase}.js`)
+    return testCase
 }
 
-
-if(body.isDevMode){
-  switch (body.testCase) {
-    case 1:
-      data = testCase = getTestCase('testCaseNewPeople','shouldSuccess')
-    case 2:
-      data = testCase = getTestCase('testCaseNewPeople','shouldFailMissingValue')
-    default:
-      return 
-  }
+if (body.isDevMode) {
+    switch (body.testCase) {
+        case 1:
+            data = testCase = getTestCase('testCaseNewPeople', 'shouldSuccess')
+        case 2:
+            data = testCase = getTestCase(
+                'testCaseNewPeople',
+                'shouldFailMissingValue'
+            )
+        default:
+            return
+    }
 }
 ```
-

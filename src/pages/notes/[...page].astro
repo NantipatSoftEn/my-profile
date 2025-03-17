@@ -1,17 +1,17 @@
 ---
-import { SITE } from "@config";
-import Posts from "@layouts/Posts.astro";
-import type { GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
-import {getSortedPosts,getSortedNotes} from "@utils/getSortedPosts";
-import Notes from "@layouts/Notes.astro";
+import { SITE } from '@config'
+import Posts from '@layouts/Posts.astro'
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import { getSortedPosts, getSortedNotes } from '@utils/getSortedPosts'
+import Notes from '@layouts/Notes.astro'
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const notes = await getCollection("note", ({ data }) => !data.draft);
-  return paginate(getSortedNotes(notes), { pageSize: SITE.postPerPage });
-}) satisfies GetStaticPaths;
+    const notes = await getCollection('note', ({ data }) => !data.draft)
+    return paginate(getSortedNotes(notes), { pageSize: SITE.postPerPage })
+}) satisfies GetStaticPaths
 
-const { page } = Astro.props;
+const { page } = Astro.props
 ---
 
 <Notes {page} />

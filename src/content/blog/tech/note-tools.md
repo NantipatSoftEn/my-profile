@@ -7,22 +7,21 @@ slug: note-tools
 featured: true
 draft: false
 tags:
-  - tech
-description:
-  จดของที่น่าสนใจจากไป hang out
+    - tech
+description: จดของที่น่าสนใจจากไป hang out
 ---
 
 ## Tools
 
-- n8n
-- [girst](https://www.getgrist.com/)
-- mongodb
-- fiarebase
-- cloudflare r2
-- balotro
-- app dali dev
-- pramatic engineer
-- rewrite
-- aerospace
-- short cat
-- caption reviewer
+-   n8n
+-   [girst](https://www.getgrist.com/)
+-   mongodb
+-   fiarebase
+-   cloudflare r2
+-   balotro
+-   app dali dev
+-   pramatic engineer
+-   rewrite
+-   aerospace
+-   short cat
+-   caption reviewer
