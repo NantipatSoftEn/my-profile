@@ -7,12 +7,19 @@ slug: note-tools
 featured: true
 draft: false
 tags:
+<<<<<<< HEAD
     - tech
 description: จดของที่น่าสนใจจากไป hang out
+=======
+  - tech
+description:
+  จดของที่น่าสนใจจากไป hang out
+>>>>>>> bc768da (docs: move blog posts to new folders)
 ---
 
 ## Tools
 
+<<<<<<< HEAD
 -   n8n
 -   [girst](https://www.getgrist.com/)
 -   mongodb
@@ -25,3 +32,17 @@ description: จดของที่น่าสนใจจากไป hang o
 -   aerospace
 -   short cat
 -   caption reviewer
+=======
+- n8n
+- [girst](https://www.getgrist.com/)
+- mongodb
+- fiarebase
+- cloudflare r2
+- balotro
+- app dali dev
+- pramatic engineer
+- rewrite
+- aerospace
+- short cat
+- caption reviewer
+>>>>>>> bc768da (docs: move blog posts to new folders)
