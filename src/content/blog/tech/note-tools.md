@@ -1,38 +1,18 @@
 ---
 author: NantipatSoftEn
-pubDatetime: 2022-09-23T15:22:00Z
+pubDatetime: 2022-09-23T15:22:00.000Z
 modDatetime: 2023-12-21T09:12:47.400Z
 title: NoteTools
 slug: note-tools
 featured: true
 draft: false
 tags:
-<<<<<<< HEAD
-    - tech
-description: จดของที่น่าสนใจจากไป hang out
-=======
   - tech
-description:
-  จดของที่น่าสนใจจากไป hang out
->>>>>>> bc768da (docs: move blog posts to new folders)
+description: จดของที่น่าสนใจจากไป hang out
 ---
 
 ## Tools
 
-<<<<<<< HEAD
--   n8n
--   [girst](https://www.getgrist.com/)
--   mongodb
--   fiarebase
--   cloudflare r2
--   balotro
--   app dali dev
--   pramatic engineer
--   rewrite
--   aerospace
--   short cat
--   caption reviewer
-=======
 - n8n
 - [girst](https://www.getgrist.com/)
 - mongodb
@@ -45,4 +25,3 @@ description:
 - aerospace
 - short cat
 - caption reviewer
->>>>>>> bc768da (docs: move blog posts to new folders)

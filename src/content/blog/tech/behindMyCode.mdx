@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
 author: Army
-=======
-author:  Army
->>>>>>> bc768da (docs: move blog posts to new folders)
 pubDatetime: 2024-12-24T13:15:00
 modDatetime: 2024-12-24T13:15:00
 
@@ -11,7 +7,6 @@ title: DiaryCoding:behindMyCode
 slug: behindMyCode1
 featured: false
 tags:
-<<<<<<< HEAD
     - tech
     - code
 description: ผมได้ทำ feature นึงซึ่งอยากจะบันทึกส่วนนึงไว้หน่อย
@@ -20,17 +15,6 @@ description: ผมได้ทำ feature นึงซึ่งอยากจ�
 ผมได้เขียน feature นึงขึ้นมาซึ่งเป็นตัว handle ในการ allow สิทธิต่างๆ(ในที่นี้มีแค่สิทธิการส่ง email)ของพนักงานในองค์กร
 
 `handlePolicyCheckBox` ทำหน้าที่เป็นเสมือน "ผู้คุมกฎ" ตรวจสอบสถานะ และแบ่งพนักงานออกเป็นสองกลุ่ม
-=======
-  - tech
-  - code
-description:   ผมได้ทำ feature นึงซึ่งอยากจะบันทึกส่วนนึงไว้หน่อย
-
----
-
-ผมได้เขียน  feature นึงขึ้นมาซึ่งเป็นตัว handle ในการ allow สิทธิต่างๆ(ในที่นี้มีแค่สิทธิการส่ง email)ของพนักงานในองค์กร
-
-`handlePolicyCheckBox`  ทำหน้าที่เป็นเสมือน  "ผู้คุมกฎ"  ตรวจสอบสถานะ  และแบ่งพนักงานออกเป็นสองกลุ่ม
->>>>>>> bc768da (docs: move blog posts to new folders)
 
 `unCheckToCheck`: กลุ่มผู้ได้รับอนุญาต สามารถส่งอีเมล ติดต่อสื่อสาร
 
@@ -40,7 +24,6 @@ description:   ผมได้ทำ feature นึงซึ่งอยาก�
 
 ```typescript
 interface EmailPolicy {
-<<<<<<< HEAD
     EmployeeID: number
     allowSendEmail: boolean
 }
@@ -50,24 +33,12 @@ const employees: EmailPolicy[] = [
     { EmployeeID: 2, allowSendEmail: true },
     { EmployeeID: 3, allowSendEmail: false },
     { EmployeeID: 4, allowSendEmail: false },
-=======
-  EmployeeID: number
-  allowSendEmail: boolean
-}
-// true = checked, false = uncheck
-const employees: EmailPolicy[] = [
-  { EmployeeID: 1, allowSendEmail: true },
-  { EmployeeID: 2, allowSendEmail: true },
-  { EmployeeID: 3, allowSendEmail: false },
-  { EmployeeID: 4, allowSendEmail: false },
->>>>>>> bc768da (docs: move blog posts to new folders)
 ]
 
 let unCheckToCheck: EmailPolicy[] = []
 let checkToUncheck: EmailPolicy[] = []
 
 const handlePolicyCheckBox = (isChecked: boolean, employees: EmailPolicy) => {
-<<<<<<< HEAD
     // case 1 unchecked to check
     if (isChecked && employees.allowSendEmail) {
         unCheckToCheck.push(employees)
@@ -92,34 +63,11 @@ const handlePolicyCheckBox = (isChecked: boolean, employees: EmailPolicy) => {
         )
         return
     }
-=======
- // case 1 unchecked to check
- if (isChecked && employees.allowSendEmail) {
-    unCheckToCheck.push(employees)
-    return 
- }  
- // case 2 checked to uncheck (when you change back)
- if (isChecked && !employees.allowSendEmail) {
-    unCheckToCheck = unCheckToCheck.filter((employee) => employee.EmployeeID !== employees.EmployeeID)
- }
- 
- // case 3 check to uncheck
- if (!isChecked && employees.allowSendEmail) {
-    checkToUncheck.push(employees)
-    return 
- }
- // case 4 uncheck to check (when you change back)
- if (!isChecked && !employees.allowSendEmail) {
-    checkToUncheck = checkToUncheck.filter((employee) => employee.EmployeeID !== employees.EmployeeID)
-    return 
- }
->>>>>>> bc768da (docs: move blog posts to new folders)
 }
 ```
 
 <span style={{ color: 'blue' }}>EmployeeID:</span> หมายเลขประจำตัวพนักงาน
 
-<<<<<<< HEAD
 <span style={{ color: 'blue' }}>allowSendEmail:</span> สถานะการอนุญาตส่งอีเมล
 (true = อนุญาต, false = ไม่อนุญาต)
 
@@ -127,19 +75,11 @@ const handlePolicyCheckBox = (isChecked: boolean, employees: EmailPolicy) => {
 EmailPolicy
 
 <span style={{ color: 'blue' }}>สร้างอาร์เรย์ unCheckToCheck:</span> เก็บข้อมูลพนักงานที่เปลี่ยนสถานะจากไม่อนุญาตเป็นอนุญาต
-=======
-<span style={{ color: 'blue' }}>allowSendEmail:</span> สถานะการอนุญาตส่งอีเมล (true = อนุญาต, false = ไม่อนุญาต)
-
-<span style={{ color: 'blue' }}>สร้างอาร์เรย์ employees:</span> เก็บข้อมูลพนักงานในรูปแบบ EmailPolicy
-
-<span style={{ color: 'blue' }}>สร้างอาร์เรย์ unCheckToCheck:</span>  เก็บข้อมูลพนักงานที่เปลี่ยนสถานะจากไม่อนุญาตเป็นอนุญาต
->>>>>>> bc768da (docs: move blog posts to new folders)
 
 <span style={{ color: 'blue' }}>สร้างอาร์เรย์ checkToUncheck:</span> เก็บข้อมูลพนักงานที่เปลี่ยนสถานะจากอนุญาตเป็นไม่อนุญาต
 
 `handlePolicyCheckBox` รับค่า isChecked (สถานะ checkbox) และ employees (ข้อมูลพนักงาน)
 
-<<<<<<< HEAD
 ตรวจสอบสถานะ checkbox และสถานะ allowSendEmail ผมได้แบ่งเป็น 4 กรณีและเขียนตรงนี้ โดยใช้ If-statements design guard clauses
 เพื่อจะ update ค่า และ return ออกทันทีที่ทำเสร็จ
 
@@ -154,15 +94,3 @@ EmailPolicy
 
 <span style={{ color: 'green' }}>กรณีที่ 4:</span> เปลี่ยนจากไม่อนุญาตเป็นอนุญาต
 (เปลี่ยนกลับ) -> ลบข้อมูลพนักงานออกจาก checkToUncheck
-=======
-ตรวจสอบสถานะ checkbox และสถานะ allowSendEmail  ผมได้แบ่งเป็น 4 กรณีและเขียนตรงนี้ โดยใช้ If-statements design guard clauses 
-เพื่อจะ update ค่า และ return ออกทันทีที่ทำเสร็จ
-
-<span style={{ color: 'green' }}>กรณีที่ 1:</span> เปลี่ยนจากไม่อนุญาตเป็นอนุญาต -> เพิ่มข้อมูลพนักงานใน unCheckToCheck
-
-<span style={{ color: 'green' }}>กรณีที่ 2:</span> เปลี่ยนจากอนุญาตเป็นไม่อนุญาต (เปลี่ยนกลับ) -> ลบข้อมูลพนักงานออกจาก unCheckToCheck
-
-<span style={{ color: 'green' }}>กรณีที่ 3:</span> เปลี่ยนจากอนุญาตเป็นไม่อนุญาต -> เพิ่มข้อมูลพนักงานใน checkToUncheck
-
-<span style={{ color: 'green' }}>กรณีที่ 4:</span> เปลี่ยนจากไม่อนุญาตเป็นอนุญาต (เปลี่ยนกลับ) -> ลบข้อมูลพนักงานออกจาก checkToUncheck
->>>>>>> bc768da (docs: move blog posts to new folders)
