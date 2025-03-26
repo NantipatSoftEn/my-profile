@@ -4,6 +4,7 @@ import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
 import BottomNarbar from '@components/BottomNarbar'
 import FlexboxCard from '@components/lab/FlexboxCard'
+import MasonryGrid from '@components/lab/MasonryGrid'
 ---
 
 <style>
@@ -13,5 +14,6 @@ import FlexboxCard from '@components/lab/FlexboxCard'
     <Header />
     <BottomNarbar />
     <FlexboxCard client:only="react"/>
+    <MasonryGrid client:only="react" />
     <Footer />
 </Layout>
