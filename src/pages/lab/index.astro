@@ -3,13 +3,15 @@ import Layout from '@layouts/Layout.astro'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
 import BottomNarbar from '@components/BottomNarbar'
+import FlexboxCard from '@components/lab/FlexboxCard'
 ---
 
+<style>
+
+</style>
 <Layout>
     <Header />
     <BottomNarbar />
+    <FlexboxCard client:only="react"/>
     <Footer />
 </Layout>
-
-
-
