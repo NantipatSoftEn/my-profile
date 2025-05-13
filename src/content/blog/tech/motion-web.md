@@ -6,6 +6,7 @@ slug: motion-web
 featured: false
 tags:
   - rodemap
+  - tech
 description: web design
 ---
 
