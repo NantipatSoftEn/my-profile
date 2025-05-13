@@ -22,7 +22,6 @@ const { post } = Astro.props
 
 const posts = await getCollection('note')
 const sortedPosts = getSortedNotes(posts)
-console.log("test",posts)
 ---
 
 <PostDetails post={post} posts={sortedPosts} />

@@ -7,6 +7,7 @@ featured: false
 tags:
   - god
 description: จดบันทึกบทเรียน
+ogImage: /books/googlebook.png
 ---
 
 test
