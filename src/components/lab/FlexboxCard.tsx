@@ -187,5 +187,7 @@ export default function FlexboxCard() {
                 </div>
             </div>
         </div>
+
+        
     )
 }

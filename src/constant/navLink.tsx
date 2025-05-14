@@ -120,6 +120,6 @@ export const navLinks = [
                 <circle cx="19" cy="9.75" r="0.75" style={{ fill: '#fff' }} />
             </svg>
         ),
-        text: 'Note',
+        text: 'book',
     },
 ]
