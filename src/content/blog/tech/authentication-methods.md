@@ -1,16 +1,14 @@
 ---
 author: Army
-pubDatetime: 2025-02-06T10:25:54.000Z
+pubDatetime: 2025-05-16T12:03:00.000Z
 title: Authentication Methods
 slug: authentication-methods
-featured: false
+featured: true
 tags:
-  - god
-description:  Authentication Methods
-ogImage: 
+  - tech
+  - fundamental
+description:  Authentication Methods 
 ---
-# REST API Authentication Methods
-
 ## 1. No Auth
 
 - ไม่มีการยืนยันตัวตน
