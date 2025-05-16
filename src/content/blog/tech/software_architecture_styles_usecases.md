@@ -1,13 +1,13 @@
 ---
 author: Army
 pubDatetime: 2025-05-16T12:03:00.000Z
-title: software_architecture_styles_usecases
+title: Software Architecture Styles Usecase
 slug: software_architecture_styles_usecases
 featured: true
 tags:
   - tech
   - fundamental
-description:  Authentication Methods 
+description:  Software Architecture Styles Usecase
 ---
 
 
@@ -21,6 +21,7 @@ description:  Authentication Methods
 **แนวคิด:** แบ่งระบบเป็นชั้น เช่น Presentation, Business, Data Access
 
 **Use Case:**
+
 - เว็บแอปพลิเคชันทั่วไป
 - ระบบบัญชี/ERP
 - Legacy systems ที่ต้องการแยก logic ชัดเจน
@@ -34,6 +35,7 @@ description:  Authentication Methods
 **แนวคิด:** มีแกนหลักเล็ก ๆ (core) แล้วเสริมความสามารถด้วย plugin
 
 **Use Case:**
+
 - โปรแกรมที่ต้องรองรับ plugin เช่น VSCode, IDE, Media Player
 - ระบบที่ต้องการเปิดให้บุคคลภายนอกเสริมฟีเจอร์เองได้
 
@@ -46,6 +48,7 @@ description:  Authentication Methods
 **แนวคิด:** แยกแอปออกเป็น service ย่อย ที่ deploy และ scale ได้อิสระ
 
 **Use Case:**
+
 - แพลตฟอร์ม e-commerce ขนาดใหญ่
 - ระบบ backend สำหรับ mobile apps ที่ต้องแยก feature
 - FinTech หรือ SaaS ที่ต้องรองรับหลายทีม
@@ -59,6 +62,7 @@ description:  Authentication Methods
 **แนวคิด:** กระจายข้อมูลและโหลดให้หลาย node ลด bottleneck
 
 **Use Case:**
+
 - ระบบจองตั๋วหรือการซื้อขายแบบ real-time
 - ระบบที่ต้องรองรับผู้ใช้พร้อมกันหลายแสนราย
 - เกม MMO หรือการประมวลผลสูง
@@ -72,6 +76,7 @@ description:  Authentication Methods
 **แนวคิด:** ออกแบบซอฟต์แวร์จากมุมมองของ business domain
 
 **Use Case:**
+
 - ระบบธนาคาร / ระบบประกันภัย
 - ระบบที่มีกฎทางธุรกิจซับซ้อน เช่น CRM, ERP
 - แพลตฟอร์ม B2B ที่ต้อง mapping domain หลายแบบ
@@ -85,6 +90,7 @@ description:  Authentication Methods
 **แนวคิด:** ใช้ Event เป็นตัวกระตุ้นการทำงานของระบบ
 
 **Use Case:**
+
 - ระบบแจ้งเตือน (notification system)
 - ระบบ IoT หรือ sensor data processing
 - ระบบ E-commerce ที่ต้อง handle order, stock, delivery แบบ async
@@ -98,6 +104,7 @@ description:  Authentication Methods
 **แนวคิด:** แยก UI, Business Logic, และ Data Access ออกจากกัน
 
 **Use Case:**
+
 - Mobile app (Android, Flutter)
 - Desktop application ที่เน้น UI interaction
 
@@ -110,6 +117,7 @@ description:  Authentication Methods
 **แนวคิด:** มีตัวควบคุมกลาง (orchestrator) กำกับการทำงานของ services
 
 **Use Case:**
+
 - Workflow Automation (เช่น Camunda, BPMN)
 - ระบบจัดการคำสั่งซื้อที่ต้องควบคุมหลาย service ทำงานร่วมกัน
 - Integration Platform เช่น Apache Airflow
@@ -123,6 +131,7 @@ description:  Authentication Methods
 **แนวคิด:** แยกการอ่าน (Query) และเขียน (Command) ออกจากกัน
 
 **Use Case:**
+
 - ระบบที่อ่านเยอะ เขียนน้อย หรือแยก logic การทำงาน
 - ระบบ financial ledger, ระบบ Event Sourcing
 - ระบบที่ต้องการ audit history ทุกการเปลี่ยนแปลง
