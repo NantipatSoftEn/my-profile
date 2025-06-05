@@ -10,6 +10,7 @@ import Socials from '@components/Socials.astro'
 import { getSortedPosts } from '@utils/getSortedPosts'
 import { SITE, SOCIALS } from '@config'
 import BottomNarbar from '@components/BottomNarbar'
+import TodayGrid from '@components/lab/Card'
 
 const posts = await getCollection('blog')
 
@@ -21,7 +22,7 @@ const socialCount = SOCIALS.filter(social => social.active).length
 ---
 
 <Layout>
-    <Header />
+    <!-- <Header /> -->
     <BottomNarbar />
     <!-- <div class="container mx-auto">
          <video autoplay muted loop>
@@ -50,77 +51,8 @@ const socialCount = SOCIALS.filter(social => social.active).length
                 about itself, is not puffed up.
             </p>
         </div>
-        
-        <!-- New image layout grid starts here (line 53) -->
-        <div class="max-w-6xl mx-auto px-4 py-12 relative z-10">
-            <!-- Header with Today and profile image -->
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold text-white">Today</h2>
-                <div class="w-10 h-10 rounded-full overflow-hidden bg-white">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="w-full h-full object-cover">
-                </div>
-            </div>
-            
-            <!-- Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <!-- Card 1 - TRAVEL -->
-                <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" alt="Mountains" 
-                        class="w-full h-[300px] object-cover">
-                    <div class="absolute top-5 left-5 bg-white/80 text-gray-800 px-3 py-1 text-xs font-semibold rounded">
-                        TRAVEL
-                    </div>
-                    <div class="absolute bottom-5 left-5 max-w-[80%]">
-                        <h3 class="text-white text-xl font-semibold leading-tight">
-                            5 Inspiring Apps<br>for Your Next Trip
-                        </h3>
-                    </div>
-                </div>
-                
-                <!-- Card 2 - HOW TO -->
-                <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc" alt="Green leaves" 
-                        class="w-full h-[300px] object-cover">
-                    <div class="absolute top-5 left-5 bg-white/80 text-gray-800 px-3 py-1 text-xs font-semibold rounded">
-                        HOW TO
-                    </div>
-                    <div class="absolute bottom-5 left-5 max-w-[80%]">
-                        <h3 class="text-white text-xl font-semibold leading-tight">
-                            Contemplate the Meaning<br>of Life Twice a Day
-                        </h3>
-                    </div>
-                </div>
-                
-                <!-- Card 3 - STEPS -->
-                <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1529316738131-4d0e0761a38e" alt="White staircase" 
-                        class="w-full h-[300px] object-cover">
-                    <div class="absolute top-5 left-5 bg-white/80 text-gray-800 px-3 py-1 text-xs font-semibold rounded">
-                        STEPS
-                    </div>
-                    <div class="absolute bottom-5 left-5 max-w-[80%]">
-                        <h3 class="text-white text-xl font-semibold leading-tight">
-                            Urban Exploration Apps<br>for the Vertically-Inclined
-                        </h3>
-                    </div>
-                </div>
-                
-                <!-- Card 4 - HATS -->
-                <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3" alt="Person with hat" 
-                        class="w-full h-[300px] object-cover">
-                    <div class="absolute top-5 left-5 bg-white/80 text-gray-800 px-3 py-1 text-xs font-semibold rounded">
-                        HATS
-                    </div>
-                    <div class="absolute bottom-5 left-5 max-w-[80%]">
-                        <h3 class="text-white text-xl font-semibold leading-tight">
-                            Take Control of Your Hat Life<br>With This Stunning New App
-                        </h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+      
+        <TodayGrid />
         <Footer />
     </div>
 </Layout>
