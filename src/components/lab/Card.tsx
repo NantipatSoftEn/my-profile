@@ -75,7 +75,7 @@ export default function TodayGrid() {
         {
             category: 'Hats',
             title: 'Take Control of Your Hat Life With This Stunning New App',
-            image: 'assets/orochimaru.gif',
+            image: '/assets/orochimaru.gif',
             size: {
                 width: '60%',
                 height: '300px',
