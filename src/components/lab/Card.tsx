@@ -48,7 +48,7 @@ export default function TodayGrid() {
         {
             category: 'Travel',
             title: '5 Inspiring Apps for Your Next Trip',
-            image: 'assets/orochimaru.gif',
+            image: '/assets/orochimaru.gif',
             size: {
                 width: '60%',
                 height: '300px',
@@ -57,7 +57,7 @@ export default function TodayGrid() {
         {
             category: 'How To',
             title: 'Contemplate the Meaning of Life Twice a Day',
-            image: 'assets/orochimaru.gif',
+            image: '/assets/orochimaru.gif',
             size: {
                 width: '40%',
                 height: '300px',
@@ -66,7 +66,7 @@ export default function TodayGrid() {
         {
             category: 'Steps',
             title: 'Urban Exploration Apps for the Vertically-Inclined',
-            image: 'assets/orochimaru.gif',
+            image: '/assets/orochimaru.gif',
             size: {
                 width: '40%',
                 height: '300px',
