@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import PostDetails from '@layouts/PostDetails.astro'
 import { getSortedNotes, getSortedPosts } from '@utils/getSortedPosts'
+import BookDetails from '@layouts/BookDetails.astro'
 
 export interface Props {
     post: CollectionEntry<'note'>
@@ -24,4 +24,4 @@ const posts = await getCollection('note')
 const sortedPosts = getSortedNotes(posts)
 ---
 
-<PostDetails post={post} posts={sortedPosts} />
+<BookDetails post={post} posts={sortedPosts} />
