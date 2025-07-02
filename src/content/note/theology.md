@@ -1,11 +1,12 @@
 ---
 author: Army
 title: theology
-slug: pray
+slug: theology
 featured: false
 tags:
   - god
 description: จด theology
+ogImage: /books/everyoneThelogian.png
 ---
 
 
