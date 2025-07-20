@@ -84,6 +84,14 @@ const { activeNav } = Astro.props
                     </li>
                     <li>
                         <a
+                            href="/notes/"
+                            class={activeNav === 'notes' ? 'active' : ''}
+                        >
+                            books
+                        </a>
+                    </li>
+                    <li>
+                        <a
                             href="/tags/"
                             class={activeNav === 'tags' ? 'active' : ''}
                         >

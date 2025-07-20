@@ -4,7 +4,7 @@ pubDatetime: 2024-10-28T10:25:54
 title: คำอธิฐาน
 slug: pray
 featured: false
-ogImage: https://github.com/satnaing/astro-paper/assets/53733092/1ef0cf03-8137-4d67-ac81-84a032119e3a
+# ogImage: https://github.com/satnaing/astro-paper/assets/53733092/1ef0cf03-8137-4d67-ac81-84a032119e3a
 tags:
     - god
 description: พระเจ้าคุยด้วยเรื่องการอธิฐานและการสรรเสริญ

@@ -8,8 +8,8 @@ export const SITE: Site = {
     title: 'NantipatSoftEn',
     ogImage: '/assets/orochimaru15.png',
     lightAndDarkMode: true,
-    postPerIndex: 4,
-    postPerPage: 3,
+    postPerIndex: 7,
+    postPerPage: 7,
     scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 }
 
