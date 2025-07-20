@@ -40,7 +40,7 @@ export const SOCIALS: SocialObjects = [
     },
     {
         name: 'Instagram',
-        href: 'https://github.com/NantipatSoftEn',
+        href: 'https://www.instagram.com/NantipatSoftEn',
         linkTitle: `${SITE.title} on Instagram`,
         active: true,
     },
@@ -54,13 +54,13 @@ export const SOCIALS: SocialObjects = [
         name: 'Mail',
         href: 'mailto:nantipatsoften.777@gmail.com',
         linkTitle: `Send an email to ${SITE.title}`,
-        active: false,
+        active: true,
     },
     {
-        name: 'Twitter',
-        href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on Twitter`,
-        active: false,
+        name: 'Medium',
+        href: 'https://medium.com/@nantipatsoften',
+        linkTitle: `${SITE.title} on Medium`,
+        active: true,
     },
     {
         name: 'Twitch',
