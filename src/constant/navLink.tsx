@@ -76,7 +76,7 @@ export const navLinks = [
                 <path d="M6 7h6v6H6zm7 8H6v2h12v-2h-4zm1-4h4v2h-4zm0-4h4v2h-4z" />
             </svg>
         ),
-        text: 'Read about Tech',
+        text: 'ReadTech',
     },
     {
         url: '/notes',

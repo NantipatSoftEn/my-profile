@@ -63,28 +63,28 @@ export const SOCIALS: SocialObjects = [
         active: true,
     },
     {
-        name: 'Twitch',
+        name: 'DEV',
         href: 'https://github.com/satnaing/astro-paper',
         linkTitle: `${SITE.title} on Twitch`,
-        active: false,
+        active: true,
     },
     {
-        name: 'YouTube',
+        name: 'BeeCrowd',
         href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on YouTube`,
-        active: false,
+        linkTitle: `${SITE.title} on BeeCrowd`,
+        active: true,
     },
     {
-        name: 'WhatsApp',
+        name: 'LeetCode',
         href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on WhatsApp`,
-        active: false,
+        linkTitle: `${SITE.title} on LeetCode`,
+        active: true,
     },
     {
-        name: 'Snapchat',
+        name: 'Bible',
         href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on Snapchat`,
-        active: false,
+        linkTitle: `${SITE.title} on Bible`,
+        active: true,
     },
     {
         name: 'Pinterest',
@@ -147,3 +147,5 @@ export const SOCIALS: SocialObjects = [
         active: false,
     },
 ]
+
+// https://judge.beecrowd.com/en/profile/126032
