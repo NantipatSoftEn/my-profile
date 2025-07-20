@@ -63,7 +63,7 @@ export const navLinks = [
                 alt="วงแหวนเว็บ"
                 width="32"
                 height="32"
-                src="https://webring.wonderful.software/webring.black.svg"
+                src="https://webring.wonderful.software/webring.svg"
             />
         ),
         text: 'วงแหวนเว็บ',

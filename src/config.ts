@@ -76,16 +76,22 @@ export const SOCIALS: SocialObjects = [
     },
     {
         name: 'LeetCode',
-        href: 'https://github.com/satnaing/astro-paper',
+        href: 'https://leetcode.com/u/NantipatSoftEn/',
         linkTitle: `${SITE.title} on LeetCode`,
         active: true,
     },
     {
         name: 'Bible',
-        href: 'https://github.com/satnaing/astro-paper',
+        href: 'https://codegeassmasterzeronebreakoutr1r2.codes/myword',
         linkTitle: `${SITE.title} on Bible`,
         active: true,
     },
+    // {
+    //     name: 'WebRing',
+    //     href: 'https://codegeassmasterzeronebreakoutr1r2.codes/myword',
+    //     linkTitle: `${SITE.title} on WebRing`,
+    //     active: true,
+    // },
     {
         name: 'Pinterest',
         href: 'https://github.com/satnaing/astro-paper',
@@ -98,12 +104,12 @@ export const SOCIALS: SocialObjects = [
         linkTitle: `${SITE.title} on TikTok`,
         active: false,
     },
-    {
-        name: 'CodePen',
-        href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on CodePen`,
-        active: false,
-    },
+    // {
+    //     name: 'CodePen',
+    //     href: 'https://codepen.io/keymasterviriya1150',
+    //     linkTitle: `${SITE.title} on CodePen`,
+    //     active: true,
+    // },
     {
         name: 'Discord',
         href: 'https://github.com/satnaing/astro-paper',
@@ -132,7 +138,7 @@ export const SOCIALS: SocialObjects = [
         name: 'Steam',
         href: 'https://github.com/satnaing/astro-paper',
         linkTitle: `${SITE.title} on Steam`,
-        active: false,
+        active: true,
     },
     {
         name: 'Telegram',
@@ -147,5 +153,3 @@ export const SOCIALS: SocialObjects = [
         active: false,
     },
 ]
-
-// https://judge.beecrowd.com/en/profile/126032

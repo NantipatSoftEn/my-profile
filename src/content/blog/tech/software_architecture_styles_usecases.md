@@ -3,7 +3,7 @@ author: Army
 pubDatetime: 2025-05-16T12:03:00.000Z
 title: Software Architecture Styles Usecase
 slug: software_architecture_styles_usecases
-featured: true
+featured: false
 tags:
     - tech
     - fundamental
