@@ -29,11 +29,11 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
                         href={href}
                         className="md:w-1/3 overflow-hidden rounded-lg"
                     >
-                        <img
+                        {/* <img
                             src={imageUrl}
                             alt={title}
                             className="h-200 w-full object-cover transition-transform duration-300 hover:scale-105"
-                        />
+                        /> */}
                     </a>
                 )}
                 <div className={imageUrl ? 'md:w-2/3' : 'w-full'}>

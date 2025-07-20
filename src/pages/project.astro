@@ -19,7 +19,7 @@ const projects = [
   },
   {
     title: "SeedCamp2025",
-    type: "Full-Stack",
+    type: "Frontend+Backend",
     image: "/assets/project/seedcamp2025.png",
     desc: "Tool for tracking slip audits and managing team members for Seed Camp 2025. Features include user authentication, team management, and slip audit tracking.",
     tags: ["Astro", "TypeScript", "React", "TailwindCSS","Supabase"],
@@ -28,48 +28,35 @@ const projects = [
     bgColor: "bg-[#B4BEE0]",
   },
   {
-    title: "Haru Fashion",
-    type: "Frontend",
-    image: "/assets/softEn.png",
-    desc: "An ecommerce web application where users can browse various products, add to wishlist, add to cart, and make purchase. Available in English and Burmese languages.",
-    tags: ["NextJS", "TypeScript", "TailwindCSS", "ContextAPI"],
-    liveUrl: "https://haru-fashion.vercel.app/",
-    codeUrl: "https://github.com/satnaing/haru-fashion",
+    title: "My Kanban Board",
+    type: "Frontend+Backend",
+    image: "/assets/project/kanbanbord.png",
+    desc: "A personal Kanban board application built with React and TypeScript. Allows users to create, edit, and delete tasks in a Kanban-style layout.",
+    tags: ["NextJS", "TypeScript", "TailwindCSS", "ContextAPI","Supabase"],
+    liveUrl: "https://v0-simple-kanban-board-flax.vercel.app",
+    // codeUrl: "https://github.com/satnaing/haru-fashion",
     bgColor: "bg-[#A6CECE]",
-    githubApi: "https://api.github.com/repos/satnaing/haru-fashion",
+    // githubApi: "https://api.github.com/repos/satnaing/haru-fashion",
   },
   {
-    title: "Haru API",
-    type: "Backend",
-    image: "/assets/pigeon.png",
-    desc: "A RESTful API developed for Haru fashion ecommerce project. Include CRUD operations, authentication, authorization, forgot/reset password and full-text search.",
-    tags: ["ExpressJS", "TypeScript", "PostgreSQL", "Prisma"],
-    liveUrl: "https://satnaing.github.io/haru-api/",
-    codeUrl: "https://github.com/satnaing/haru-api",
+    title: "quiet-time-tracker",
+    type: "Frontend+Backend",
+    image: "/assets/project/devotion-time.png",
+    desc: "A web application for tracking quiet times and reflections (Christian).",
+    tags: ["NextJS", "TypeScript", "TailwindCSS", "ContextAPI","Supabase"],
+    liveUrl: "https://v0-devotion-moniter.vercel.app",
+    codeUrl: "https://github.com/NantipatSoftEn/quiet-time-tracker",
     bgColor: "bg-[#C5E4E7]",
-    githubApi: "https://api.github.com/repos/satnaing/haru-api",
   },
-  {
-    title: "Next Bookstore",
-    type: "Frontend + HeadlessCMS",
-    image: "/assets/Repentance.png",
-    desc: "An online bookstore developed using NextJS 13 with appDir and StrapiCMS.",
-    tags: ["NextJS", "Radix UI", "TailwindCSS", "TanstackQuery", "StrapiCMS"],
-    liveUrl: "https://nextbookstore.vercel.app/",
-    codeUrl: "https://github.com/satnaing/next-bookstore",
-    bgColor: "bg-[#EBF4F4]",
-    githubApi: "https://api.github.com/repos/satnaing/next-bookstore",
-  },
-  {
-    title: "Shadcn Admin",
-    type: "Admin Dashboard",
-    image: "/assets/dev.svg",
-    desc: "Admin Dashboard UI built with Shadcn and Vite. Built with responsiveness and accessibility in mind.",
-    tags: ["ShadcnUI", "Vite", "React Router", "TypeScript"],
-    liveUrl: "https://shadcn-admin.netlify.app/",
-    codeUrl: "https://github.com/satnaing/shadcn-admin",
-    bgColor: "bg-[#FBFBFB]",
-    githubApi: "https://api.github.com/repos/satnaing/shadcn-admin",
+   {
+    title: "Apriori Data mining",
+    type: "Frontend",
+    image: "/assets/project/Apriori.png",
+    desc: "pure js  Apriori algorithm for data mining.",
+    tags: ["javascript"],
+    liveUrl: "https://nantipatsoften.github.io/Apriori/",
+    codeUrl: "https://github.com/NantipatSoftEn/Apriori",
+    bgColor: "bg-[#C5E4E7]",
   },
 ];
 ---
@@ -135,7 +122,7 @@ const projects = [
     </section>
 
     <!-- Project Statistics -->
-    <section class="mt-12 mb-8">
+    <!-- <section class="mt-12 mb-8">
       <div class="bg-skin-card border border-skin-line rounded-lg p-6 shadow-sm">
         <h3 class="text-xl font-semibold mb-4 text-skin-accent">Project Overview</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -163,7 +150,7 @@ const projects = [
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Technology Stack -->
     <section class="mt-8">
