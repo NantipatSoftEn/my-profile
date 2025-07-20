@@ -7,9 +7,12 @@ title: 'About'
  <img src="/assets/redcross.png" class="w-46 h-48 object-scale-down" alt="redcross"/>
 </div>
 
-I'm Software Engineer 6 years, I love build Tool for solve problem
-I'm passionate about building software that makes a positive impact on people's lives. I believe that technology
-should be accessible and user-friendly for everyone. I'm always looking for ways to improve my skills
+Hi! I’m a Full-stack developer with 5+ years of experience. I’ve worked on financial systems and tools for big organizations. I enjoy solving real problems with code and making things that are useful. I also help out at my church with tech stuff in my free time.
+
+
+<br/> 
+
+I will update more soon 
 
 <div>
   <img src="/assets/orochimaru.gif" class="sm:w-1/2 mx-auto" alt="orochimaru" />
