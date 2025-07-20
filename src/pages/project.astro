@@ -8,26 +8,24 @@ import Main from '@layouts/Main.astro'
 // Project data with existing assets as fallbacks
 const projects = [
   {
-    title: "",
+    title: "Seed Church Bangkok",
     type: "Frontend",
-    image: "/assets/orochimaru15.png",
-    desc: "A minimal, accessible and SEO-friendly Astro blog theme. One of the most starred blog templates built with Astro.",
+    image: "/assets/project/og-seed.png",
+    desc: "Landing page for Seed Church Bangkok, a community church in Thailand.",
     tags: ["Astro", "TypeScript", "React", "TailwindCSS"],
-    liveUrl: "https://astro-paper.pages.dev/",
-    codeUrl: "https://github.com/satnaing/astro-paper",
+    liveUrl: "https://www.seedchurchbkk.org",
+    codeUrl: "https://github.com/seedbkkchurch/seedbkk-landing-astro",
     bgColor: "bg-[#9FD0E3]",
-    githubApi: "https://api.github.com/repos/satnaing/astro-paper",
   },
   {
-    title: "Terminal Portfolio",
-    type: "Frontend",
-    image: "/assets/orochimaru.gif",
-    desc: "My portfolio website in terminal version developed with React and TypeScript.",
-    tags: ["React", "TypeScript", "Styled-Components"],
-    liveUrl: "https://terminal.satnaing.dev/",
-    codeUrl: "https://github.com/satnaing/terminal-portfolio",
+    title: "SeedCamp2025",
+    type: "Full-Stack",
+    image: "/assets/project/seedcamp2025.png",
+    desc: "Tool for tracking slip audits and managing team members for Seed Camp 2025. Features include user authentication, team management, and slip audit tracking.",
+    tags: ["Astro", "TypeScript", "React", "TailwindCSS","Supabase"],
+    liveUrl: "https://v0-seed-camp2025.vercel.app/",
+    codeUrl: "https://github.com/NantipatSoftEn/SeedCamp2025",
     bgColor: "bg-[#B4BEE0]",
-    githubApi: "https://api.github.com/repos/satnaing/terminal-portfolio",
   },
   {
     title: "Haru Fashion",
@@ -115,7 +113,7 @@ const projects = [
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
-                  Live Demo
+                  Live
                 </a>
                 <a 
                   href={project.codeUrl}
