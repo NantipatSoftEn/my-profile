@@ -32,7 +32,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
                         <img
                             src={imageUrl}
                             alt={title}
-                            className="h-300 w-full object-cover transition-transform duration-300 hover:scale-105"
+                            className="h-200 w-full object-cover transition-transform duration-300 hover:scale-105"
                         />
                     </a>
                 )}
