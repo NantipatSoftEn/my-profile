@@ -5,8 +5,8 @@ title: MotionWeb
 slug: motion-web
 featured: false
 tags:
-  - rodemap
-  - tech
+    - rodemap
+    - tech
 description: web design
 ---
 
@@ -44,7 +44,7 @@ Scroll-based Animation - แอนิเมชันที่เปลี่ย�
 - Anticipation & Follow-through → ให้แอนิเมชันดูเป็นธรรมชาติ
 - Staggering & Delay → ทำให้ Motion ดู smooth
 
---------------------------------------------------------------------------------
+---
 
 ## การเริ่มต้น
 

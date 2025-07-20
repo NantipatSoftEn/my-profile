@@ -88,7 +88,7 @@ export default function MasonryGrid() {
                         className="w-20 rounded border border-gray-300 p-1 text-center"
                     />
                 </div>
-                
+
                 <div className="flex items-center gap-2">
                     <label htmlFor="size-factor" className="font-medium">
                         Size (%):

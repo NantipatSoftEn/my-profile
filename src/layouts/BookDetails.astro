@@ -61,7 +61,8 @@ const nextPost =
 ---
 
 <Layout {...layoutProps}>
-    <Header />    <div class="mx-auto flex w-full max-w-5xl justify-start px-2">
+    <Header />
+    <div class="mx-auto flex w-full max-w-5xl justify-start px-2">
         <button
             class="focus-outline mb-2 mt-8 flex hover:opacity-75"
             onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
@@ -72,7 +73,8 @@ const nextPost =
                 ></path>
             </svg><span>Go back</span>
         </button>
-    </div>    <main id="main-content">
+    </div>
+    <main id="main-content">
         <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
         <Datetime
             pubDatetime={pubDatetime}
@@ -84,19 +86,19 @@ const nextPost =
         <div class="book-layout">
             <!-- Book Image on Left Side -->
             <div class="book-image-sidebar">
-                <img 
-                    src={ogImageUrl ?? `/books/googlebook.png`} 
-                    alt={`Cover image for ${title}`} 
+                <img
+                    src={ogImageUrl ?? `/books/googlebook.png`}
+                    alt={`Cover image for ${title}`}
                     class="book-cover-image"
                 />
-                
+
                 <!-- Table of Contents -->
                 <div class="table-of-contents">
                     <h3>Table of Contents</h3>
                     <div id="toc-container"></div>
                 </div>
             </div>
-            
+
             <!-- Main Content -->
             <article id="article" class="prose book-content">
                 <Content />
@@ -206,7 +208,8 @@ const nextPost =
     <Footer />
 </Layout>
 
-<style>    main {
+<style>
+    main {
         width: 100%;
         max-width: 70rem; /* เพิ่มจาก 56rem เป็น 70rem เพื่อให้กว้างขึ้น */
         margin-left: auto;
@@ -219,7 +222,8 @@ const nextPost =
         font-size: 1.5rem;
         font-weight: 600;
         color: var(--color-accent);
-    }.book-layout {
+    }
+    .book-layout {
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -247,13 +251,16 @@ const nextPost =
         .book-content {
             width: 75%;
         }
-    }    .book-cover-image {
+    }
+    .book-cover-image {
         width: 100%;
         max-width: 200px;
         margin-left: auto;
         margin-right: auto;
         border-radius: 0.375rem;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        box-shadow:
+            0 4px 6px -1px rgb(0 0 0 / 0.1),
+            0 2px 4px -2px rgb(0 0 0 / 0.1);
         object-fit: cover;
     }
     @media (min-width: 768px) {
@@ -273,7 +280,8 @@ const nextPost =
         font-weight: 500;
         margin-bottom: 0.5rem;
         color: var(--color-accent);
-    }    #toc-container {
+    }
+    #toc-container {
         font-size: 0.875rem;
     }
     #toc-container a {
@@ -286,7 +294,7 @@ const nextPost =
     #toc-container a:hover {
         color: var(--color-accent);
     }
-    
+
     /* Hierarchy styles */
     .toc-hierarchy {
         margin-left: 0;
@@ -319,7 +327,7 @@ const nextPost =
         color: var(--color-text-muted);
         font-size: 0.8125rem;
     }
-    
+
     /* Titles without parents */
     .no-parent {
         margin-bottom: 0.5rem;
@@ -445,61 +453,61 @@ const nextPost =
                 document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
             })
     }
-    backToTop()    /* Go to page start after page swap */
+    backToTop() /* Go to page start after page swap */
     document.addEventListener('astro:after-swap', () =>
         window.scrollTo({ left: 0, top: 0, behavior: 'instant' })
-    )    /** Generate table of contents from headings */
+    ) /** Generate table of contents from headings */
     function generateTableOfContents() {
         const article = document.getElementById('article')
         const tocContainer = document.getElementById('toc-container')
-        
+
         if (!article || !tocContainer) return
-        
+
         const headings = Array.from(article.querySelectorAll('h2, h3, h4'))
-        
+
         if (headings.length === 0) {
             tocContainer.innerHTML = '<p>No sections available</p>'
             return
         }
-        
+
         const toc = document.createElement('nav')
         toc.setAttribute('aria-label', 'Table of Contents')
         toc.className = 'toc-hierarchy'
-        
+
         // สร้างโครงสร้างข้อมูลเพื่อจัดการลำดับชั้น
         let currentH2Item = null
         let currentH3Item = null
-        
+
         headings.forEach(heading => {
             const link = document.createElement('a')
             link.textContent = heading.textContent.replace('#', '')
             link.href = `#${heading.id}`
-            
-            link.addEventListener('click', (e) => {
+
+            link.addEventListener('click', e => {
                 e.preventDefault()
-                document.querySelector(`#${heading.id}`).scrollIntoView({ 
-                    behavior: 'smooth' 
+                document.querySelector(`#${heading.id}`).scrollIntoView({
+                    behavior: 'smooth',
                 })
             })
-            
+
             const headingTag = heading.tagName.toLowerCase()
-            
+
             if (headingTag === 'h2') {
                 // สร้างรายการหลัก (h2)
                 const h2Item = document.createElement('div')
                 h2Item.className = 'toc-h2-container'
-                
+
                 const h2Link = document.createElement('div')
                 h2Link.className = 'toc-h2-title'
                 h2Link.appendChild(link)
                 h2Item.appendChild(h2Link)
-                
+
                 const childrenContainer = document.createElement('div')
                 childrenContainer.className = 'toc-h2-children'
                 h2Item.appendChild(childrenContainer)
-                
+
                 toc.appendChild(h2Item)
-                
+
                 currentH2Item = childrenContainer
                 currentH3Item = null
             } else if (headingTag === 'h3') {
@@ -507,16 +515,16 @@ const nextPost =
                 if (currentH2Item) {
                     const h3Item = document.createElement('div')
                     h3Item.className = 'toc-h3-container'
-                    
+
                     const h3Link = document.createElement('div')
                     h3Link.className = 'toc-h3-title'
                     h3Link.appendChild(link)
                     h3Item.appendChild(h3Link)
-                    
+
                     const childrenContainer = document.createElement('div')
                     childrenContainer.className = 'toc-h3-children'
                     h3Item.appendChild(childrenContainer)
-                    
+
                     currentH2Item.appendChild(h3Item)
                     currentH3Item = childrenContainer
                 } else {
@@ -548,10 +556,10 @@ const nextPost =
                 }
             }
         })
-        
+
         tocContainer.appendChild(toc)
     }
-    
+
     // Generate table of contents after the content is loaded
     document.addEventListener('DOMContentLoaded', generateTableOfContents)
     // Also refresh the TOC after any possible dynamic content updates

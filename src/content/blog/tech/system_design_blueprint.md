@@ -5,9 +5,9 @@ title: System Design Blueprint
 slug: system_design_blueprint
 featured: false
 tags:
-  - tech
-  - fundamental
-description:  ลองศึกษา system design blueprint
+    - tech
+    - fundamental
+description: ลองศึกษา system design blueprint
 ---
 
 ## 🟥 1. DNS Resolution (การแปลงชื่อโดเมนเป็น IP)
@@ -19,9 +19,9 @@ description:  ลองศึกษา system design blueprint
 3. ถ้าไม่พบ → จะส่งคำร้องไปยัง **Recursive Resolver** ของ ISP หรือ DNS Server ที่กำหนด (เช่น 8.8.8.8 ของ Google)
 
 - DNS Resolver ไปยัง:
-  - Root Server
-  - TLD Server
-  - Authoritative Nameserver
+    - Root Server
+    - TLD Server
+    - Authoritative Nameserver
 - ส่ง IP กลับให้ client ผ่าน ISP
 - ISP มี cache เพื่อลดเวลาในการ resolve ครั้งต่อไป
 
@@ -60,22 +60,20 @@ description:  ลองศึกษา system design blueprint
 - DNS Resolver จะ cache คำตอบไว้ชั่วคราว
 - Cache ที่ระดับ: เบราว์เซอร์, ระบบปฏิบัติการ, DNS Resolver ของ ISP
 
-
 ### ⚠️ ข้อควรระวัง
 
 - DNS Spoofing / Poisoning: การโจมตีที่หลอกให้ resolver ได้ IP ปลอม
 - DNS over HTTPS (DoH) และ DNS over TLS (DoT): ช่วยเข้ารหัสคำขอ DNS ป้องกันการสอดแนม
 
-
 ### 🧠 สรุปภาพรวม
 
-| ขั้นตอน | ชื่อเซิร์ฟเวอร์ | หน้าที่ |
-|--------|------------------|--------|
-| 1 | Root Server | ชี้ไปยัง TLD |
-| 2 | TLD Server (.com) | ชี้ไปยัง Authoritative Server |
-| 3 | Authoritative Server | ตอบ IP แท้จริงของโดเมน |
-| 4 | DNS Resolver | ส่ง IP กลับไปยัง client |
-| 5 | Browser | นำ IP ไปเรียกเว็บ |
+| ขั้นตอน | ชื่อเซิร์ฟเวอร์      | หน้าที่                       |
+| ------- | -------------------- | ----------------------------- |
+| 1       | Root Server          | ชี้ไปยัง TLD                  |
+| 2       | TLD Server (.com)    | ชี้ไปยัง Authoritative Server |
+| 3       | Authoritative Server | ตอบ IP แท้จริงของโดเมน        |
+| 4       | DNS Resolver         | ส่ง IP กลับไปยัง client       |
+| 5       | Browser              | นำ IP ไปเรียกเว็บ             |
 
 ---
 
@@ -85,9 +83,9 @@ description:  ลองศึกษา system design blueprint
 2. DNS Resolution ให้ IP --> IP ที่ได้จะเป็นของ CDN หรือ Load Balancer --> จากนั้น browser เริ่มสร้าง TCP หรือ HTTPS Connection ไปยังปลายทาง
 3. 🚦 ISP → CDN หรือ Load Balancer --> ถ้าโดเมนใช้ CDN (เช่น Cloudflare, CloudFront) ผู้ใช้จะเชื่อมต่อกับ edge server ที่ใกล้ที่สุด
 4. Load Balancer (L4 หรือ L7)
-  -ตรวจสอบว่า service ไหนควรรับคำร้องนี้ เช่น:
-     - Static content → Frontend Server / CDN
-     - Dynamic content → Backend Server
+   -ตรวจสอบว่า service ไหนควรรับคำร้องนี้ เช่น:
+    - Static content → Frontend Server / CDN
+    - Dynamic content → Backend Server
 5. 🖥️ Frontend Server
    ในบางระบบอาจมี SSR (Server Side Rendering) เพื่อเร่งผลลัพธ์
    จัดการ rendering หน้า HTML หรือส่ง frontend assets (React/Vue)
@@ -100,7 +98,7 @@ description:  ลองศึกษา system design blueprint
 User Browser
    │
    ▼
-DNS Resolution 
+DNS Resolution
    │
    ▼
 CDN / Load Balancer
@@ -160,6 +158,7 @@ Backend Services (เช่น Auth, Order, Payment)
 ---
 
 ## 🟣 4. Backend Servers (เซิร์ฟเวอร์หลักของระบบ)
+
 - ทำงานในรูปแบบ Microservices หรือ Monolith
 - บริการหลัก: Auth, Feed, Notification, Payment ฯลฯ
 - ใช้ Message Dispatcher เพื่อส่ง Event แบบ Async
@@ -167,6 +166,7 @@ Backend Services (เช่น Auth, Order, Payment)
 ---
 
 ## 🟩 5. Upload Media (อัปโหลดไฟล์สื่อ)
+
 - ใช้ Object Storage (เช่น AWS S3)
 - Client อัปโหลดโดยใช้ Pre-signed URL
 - มีระบบจัดคิว เช่น สร้าง thumbnail, ตรวจ malware
@@ -174,6 +174,7 @@ Backend Services (เช่น Auth, Order, Payment)
 ---
 
 ## 🟨 6. Common Fan-Out Services (บริการกระจายงาน)
+
 - Notification System: Email, SMS, Push
 - Search Engine: ElasticSearch
 - Recommendation Engine
@@ -184,11 +185,13 @@ Backend Services (เช่น Auth, Order, Payment)
 ## 🟫 7. Data Layer (ชั้นข้อมูล)
 
 ### 7.1 In-memory Cache
+
 - ใช้ Redis หรือ Memcached
 - เก็บ session/token
 - ใช้ LRU eviction strategy
 
 ### 7.2 Database (SQL / NoSQL)
+
 - ใช้ Sharding / Partitioning ตาม user_id
 - รองรับ Replication, Backup, Archiving
 - มีการแยก Read/Write DB เพื่อเพิ่มประสิทธิภาพ
@@ -201,4 +204,3 @@ Backend Services (เช่น Auth, Order, Payment)
 - **Availability**: ไม่ล่มง่าย, รองรับ Failover
 - **Resilience**: ระบบยืดหยุ่น, ฟื้นตัวจาก error ได้
 - **Modular Design**: ออกแบบแบบแยกส่วน ดูแลง่าย
-

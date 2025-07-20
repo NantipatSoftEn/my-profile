@@ -7,7 +7,7 @@ slug: note-tools
 featured: true
 draft: false
 tags:
-  - tech
+    - tech
 description: จดของที่น่าสนใจจากไป hang out
 ---
 

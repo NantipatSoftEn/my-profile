@@ -17,7 +17,7 @@ const HeightControl = ({
                     min="100"
                     max="500"
                     value={value}
-                    onChange={(e) => onChange(parseInt(e.target.value))}
+                    onChange={e => onChange(parseInt(e.target.value))}
                     className="w-40 accent-blue-500"
                 />
             </label>
@@ -62,7 +62,9 @@ const Card = ({
                 <p className="text-xs font-medium uppercase opacity-80">
                     {category}
                 </p>
-                <h2 className="text-base font-semibold leading-tight">{title}</h2>
+                <h2 className="text-base font-semibold leading-tight">
+                    {title}
+                </h2>
             </div>
         </div>
     )
@@ -99,7 +101,7 @@ export default function TodayGrid() {
                 height: `${cardHeight}px`,
             },
         },
-       
+
         {
             category: 'Hats',
             title: 'Take Control of Your Hat Life With This Stunning New App',
@@ -118,7 +120,7 @@ export default function TodayGrid() {
                 height: `${cardHeight}px`,
             },
         },
-         {
+        {
             category: 'Hats',
             title: 'Take Control of Your Hat Life With This Stunning New App',
             image: 'public/assets/gif/ab2a38e3258a09b97f7879b54251b8ab.gif',
@@ -127,7 +129,7 @@ export default function TodayGrid() {
                 height: `${cardHeight}px`,
             },
         },
-         {
+        {
             category: 'Hats',
             title: 'Take Control of Your Hat Life With This Stunning New App',
             image: 'public/assets/gif/anime-naruto-shippuden.gif',
@@ -136,7 +138,6 @@ export default function TodayGrid() {
                 height: `${cardHeight}px`,
             },
         },
-      
     ]
 
     // Group cards into rows of 2 cards each

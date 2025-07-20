@@ -5,10 +5,11 @@ title: Authentication Methods
 slug: authentication-methods
 featured: true
 tags:
-  - tech
-  - fundamental
-description:  Authentication Methods 
+    - tech
+    - fundamental
+description: Authentication Methods
 ---
+
 ## 1. No Auth
 
 - ไม่มีการยืนยันตัวตน
@@ -69,10 +70,10 @@ description:  Authentication Methods
 
 - โปรโตคอลยอดนิยมในการยืนยันตัวตนกับ 3rd-party (Google, Facebook ฯลฯ)
 - รองรับหลาย grant types:
-  - Authorization Code
-  - Client Credentials
-  - Implicit Flow (เลิกแนะนำ)
-  - Resource Owner Password
+    - Authorization Code
+    - Client Credentials
+    - Implicit Flow (เลิกแนะนำ)
+    - Resource Owner Password
 - ใช้งานกับทั้ง frontend และ backend ได้
 
 ---

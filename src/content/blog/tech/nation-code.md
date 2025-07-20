@@ -21,13 +21,13 @@ emmbered vs refernace
 
 ## WOrk flow dev
 
--   task clear
--   cooncentrate
--   feedback
--   sense control
--   feel effectless
--   time pass quickly
-    gold and planing ชัดเจน
+- task clear
+- cooncentrate
+- feedback
+- sense control
+- feel effectless
+- time pass quickly
+  gold and planing ชัดเจน
 
 การทำ planung and design
 conversation commit
@@ -85,8 +85,8 @@ KL divergen formular
 
 Intrrumental COmnvergent
 
--   terminal gold สิ่งที่เราต้องการ
--   sub goal
+- terminal gold สิ่งที่เราต้องการ
+- sub goal
 
 เหมือนมีเงินเยอะก็ไปหา goal ได้หมด
 
@@ -96,5 +96,5 @@ AI มันจะฉลาดจนไม่ยอมปิดตัวเอ�
 
 ## มีคนสรุปมาให้
 
--   [จดๆจากงาน National Coding Day 2024: Conference Day bynaiwaen@DebuggingSoft](https://naiwaen.debuggingsoft.com/2024/12/recap-from-national-coding-day-2024-conference-day/?fbclid=IwY2xjawHBJLdleHRuA2FlbQIxMQABHQdbkMqh9Bb_00acdZ15NQ5wnExgAR4OTvc621gqJkK6qIupzDtUImyj7g_aem_Xd04zfwrDBdtMXWrUaQTkA)
--   [Full stack testing :: basic to basic](https://speakerdeck.com/up1/full-stack-testing-basic-to-basic)
+- [จดๆจากงาน National Coding Day 2024: Conference Day bynaiwaen@DebuggingSoft](https://naiwaen.debuggingsoft.com/2024/12/recap-from-national-coding-day-2024-conference-day/?fbclid=IwY2xjawHBJLdleHRuA2FlbQIxMQABHQdbkMqh9Bb_00acdZ15NQ5wnExgAR4OTvc621gqJkK6qIupzDtUImyj7g_aem_Xd04zfwrDBdtMXWrUaQTkA)
+- [Full stack testing :: basic to basic](https://speakerdeck.com/up1/full-stack-testing-basic-to-basic)

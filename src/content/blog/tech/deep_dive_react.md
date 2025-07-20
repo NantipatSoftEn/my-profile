@@ -127,22 +127,21 @@ inside vDOM
 
 ```tsx
 function App() {
-  const [count, setCount] = useState(0);
-  // when count has changing all component  re-render
-  return (
-    <div>
-      <Header />
-      <Content />
-      <Footer />
-      <button onClick={() => setCount(count + 1)}>Click</button>
-    </div>
-  );
+    const [count, setCount] = useState(0)
+    // when count has changing all component  re-render
+    return (
+        <div>
+            <Header />
+            <Content />
+            <Footer />
+            <button onClick={() => setCount(count + 1)}>Click</button>
+        </div>
+    )
 }
 
-const Header = React.memo(() => <h1>Header</h1>);
-const Content = React.memo(() => <div>Some content</div>);
-const Footer = React.memo(() => <footer>Footer</footer>);
-
+const Header = React.memo(() => <h1>Header</h1>)
+const Content = React.memo(() => <div>Some content</div>)
+const Footer = React.memo(() => <footer>Footer</footer>)
 ```
 
 (14 DevTools Tricks That`ll Make You a Better Developer)<https://youtu.be/pw14NzfYPa8?si=FqhwyCqR2xEiRn6y>
@@ -150,15 +149,15 @@ const Footer = React.memo(() => <footer>Footer</footer>);
 ## List virtualization (react-window / react-virtualized) คือะไร
 
 ```tsx
-{items.map(item => (
-  <div key={item.id}>{item.name}</div>
-))}
+{
+    items.map(item => <div key={item.id}>{item.name}</div>)
+}
 ```
 
 - ถ้า items มี 10,000 รายการ → React ต้อง render div 10,000 อัน!
 
 - ช้า, กิน RAM, Scroll กระตุก → UX แย่
-  
+
 ✅ Virtualization ทำยังไง?
 แทนที่จะ render ทุกแถวพร้อมกัน → มันจะ:
 
@@ -169,23 +168,21 @@ render แค่ 10–30 แถวที่อยู่ในหน้าจอ�
 แถวอื่น ๆ "ยังไม่ render จริง" → จะ render เมื่อ scroll มาถึง
 
 ```tsx
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeList as List } from 'react-window'
 
-const Row = ({ index, style }) => (
-  <div style={style}>Row #{index}</div>
-);
+const Row = ({ index, style }) => <div style={style}>Row #{index}</div>
 
 export default function MyList() {
-  return (
-    <List
-      height={400}         // ความสูงของกล่องแสดง list
-      itemCount={10000}    // จำนวน item
-      itemSize={35}        // ความสูงของแต่ละ item
-      width={300}
-    >
-      {Row}
-    </List>
-  );
+    return (
+        <List
+            height={400} // ความสูงของกล่องแสดง list
+            itemCount={10000} // จำนวน item
+            itemSize={35} // ความสูงของแต่ละ item
+            width={300}
+        >
+            {Row}
+        </List>
+    )
 }
 ```
 
@@ -201,44 +198,68 @@ export default function MyList() {
 
 - หลีกเลี่ยงการใช้ Context กับ state ที่อัปเดตบ่อย เพื่อป้องกันการ render ซ้ำ
 
-
 ```tsx
 // components/Navbar.tsx
-import React from 'react';
+import React from 'react'
 
 export default function Navbar() {
-  return (
-    <nav
-      className="bg-blue-600 text-white p-4 flex justify-between items-center"
-      aria-label="Main navigation"
-    >
-      <h1 className="text-xl font-bold">MyApp</h1>
-
-      {/* Desktop menu */}
-      <ul className="hidden md:flex gap-4" role="menubar">
-        <li><a href="#home" className="hover:underline" role="menuitem">Home</a></li>
-        <li><a href="#about" className="hover:underline" role="menuitem">About</a></li>
-        <li><a href="#contact" className="hover:underline" role="menuitem">Contact</a></li>
-      </ul>
-
-      {/* Mobile menu (hamburger) */}
-      <button
-        className="md:hidden"
-        aria-label="Open menu"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+    return (
+        <nav
+            className="bg-blue-600 text-white p-4 flex justify-between items-center"
+            aria-label="Main navigation"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </nav>
-  );
+            <h1 className="text-xl font-bold">MyApp</h1>
+
+            {/* Desktop menu */}
+            <ul className="hidden md:flex gap-4" role="menubar">
+                <li>
+                    <a href="#home" className="hover:underline" role="menuitem">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#about"
+                        className="hover:underline"
+                        role="menuitem"
+                    >
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#contact"
+                        className="hover:underline"
+                        role="menuitem"
+                    >
+                        Contact
+                    </a>
+                </li>
+            </ul>
+
+            {/* Mobile menu (hamburger) */}
+            <button
+                className="md:hidden"
+                aria-label="Open menu"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+            >
+                <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16M4 18h16"
+                    />
+                </svg>
+            </button>
+        </nav>
+    )
 }
 ```
 
@@ -247,24 +268,23 @@ export default function Navbar() {
 React ไม่รองรับ Error Boundary แบบ function component โดยตรง (เฉพาะ class component เท่านั้นที่ใช้ componentDidCatch() ได้)
 แต่! เราสามารถใช้ library เสริม เช่น react-error-boundary ที่ให้เราใช้ Error Boundary แบบ function component ได้อย่างสวยงาม
 
-
 ```tsx
-import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from './components/ErrorFallback';
-import UserProfile from './components/UserProfile';
+import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorFallback } from './components/ErrorFallback'
+import UserProfile from './components/UserProfile'
 
 export default function App() {
-  return (
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onError={(error, info) => {
-        console.error('เกิด Error:', error);
-        // ส่ง log ไปยัง Sentry หรือระบบอื่นได้
-      }}
-    >
-      <UserProfile />
-    </ErrorBoundary>
-  );
+    return (
+        <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onError={(error, info) => {
+                console.error('เกิด Error:', error)
+                // ส่ง log ไปยัง Sentry หรือระบบอื่นได้
+            }}
+        >
+            <UserProfile />
+        </ErrorBoundary>
+    )
 }
 ```
 
@@ -275,7 +295,7 @@ export default function App() {
 | **รูปแบบโค้ด**           | ใช้ `class`, `constructor`, `this`                                    | เขียนด้วย `function` ล้วน ๆ                        |
 | **การ reuse logic**      | ใช้ HOC หรือ render props → ซับซ้อน                                   | ใช้ Custom Hook → ง่ายและ reusable                 |
 | **ความกระชับของโค้ด**    | โค้ดยาว อ่านยาก                                                       | โค้ดสั้น อ่านง่าย                                  |
-| **ต้องใช้ this ไหม?**    | ✅ ต้องใช้ `this.xxx` ทุกอย่าง                                         | ❌ ไม่ต้องเลย                                       |
+| **ต้องใช้ this ไหม?**    | ✅ ต้องใช้ `this.xxx` ทุกอย่าง                                        | ❌ ไม่ต้องเลย                                      |
 | **ใช้งานกับ TypeScript** | พิมพ์ type ยุ่งกว่า                                                   | ใช้ generic กับ Hook ได้ตรงจุด                     |
 
 4:24
