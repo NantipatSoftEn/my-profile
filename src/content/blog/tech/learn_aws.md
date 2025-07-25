@@ -1,8 +1,8 @@
 ---
 author: Army
 title: Learn AWS 
-slug: english_soften
-featured: false
+slug: learn_aws
+featured: true
 tags:
     - fundamental
 description: ไม่เคยใช้ AWS ศึกษาและอ่านดู
