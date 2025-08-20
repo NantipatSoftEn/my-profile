@@ -7,122 +7,149 @@ import Main from '@layouts/Main.astro'
 
 // Project data with existing assets as fallbacks
 const projects = [
-  {
-    title: "Seed Church Bangkok",
-    type: "Frontend",
-    image: "/assets/project/og-seed.png",
-    desc: "Landing page for Seed Church Bangkok, a community church in Thailand.",
-    tags: ["Astro", "TypeScript", "React", "TailwindCSS"],
-    liveUrl: "https://www.seedchurchbkk.org",
-    codeUrl: "https://github.com/seedbkkchurch/seedbkk-landing-astro",
-    bgColor: "bg-[#9FD0E3]",
-  },
-  {
-    title: "SeedCamp2025",
-    type: "Frontend+Backend",
-    image: "/assets/project/seedcamp2025.png",
-    desc: "Tool for tracking slip audits and managing team members for Seed Camp 2025. Features include user authentication, team management, and slip audit tracking.",
-    tags: ["Astro", "TypeScript", "React", "TailwindCSS","Supabase"],
-    liveUrl: "https://v0-seed-camp2025.vercel.app/",
-    codeUrl: "https://github.com/NantipatSoftEn/SeedCamp2025",
-    bgColor: "bg-[#B4BEE0]",
-  },
-  {
-    title: "My Kanban Board",
-    type: "Frontend+Backend",
-    image: "/assets/project/kanbanbord.png",
-    desc: "A personal Kanban board application built with React and TypeScript. Allows users to create, edit, and delete tasks in a Kanban-style layout.",
-    tags: ["NextJS", "TypeScript", "TailwindCSS", "ContextAPI","Supabase"],
-    liveUrl: "https://v0-simple-kanban-board-flax.vercel.app",
-    // codeUrl: "https://github.com/satnaing/haru-fashion",
-    bgColor: "bg-[#A6CECE]",
-    // githubApi: "https://api.github.com/repos/satnaing/haru-fashion",
-  },
-  {
-    title: "quiet-time-tracker",
-    type: "Frontend+Backend",
-    image: "/assets/project/devotion-time.png",
-    desc: "A web application for tracking quiet times and reflections (Christian).",
-    tags: ["NextJS", "TypeScript", "TailwindCSS", "ContextAPI","Supabase"],
-    liveUrl: "https://v0-devotion-moniter.vercel.app",
-    codeUrl: "https://github.com/NantipatSoftEn/quiet-time-tracker",
-    bgColor: "bg-[#C5E4E7]",
-  },
-   {
-    title: "Apriori Data mining",
-    type: "Frontend",
-    image: "/assets/project/Apriori.png",
-    desc: "pure js  Apriori algorithm for data mining.",
-    tags: ["javascript"],
-    liveUrl: "https://nantipatsoften.github.io/Apriori/",
-    codeUrl: "https://github.com/NantipatSoftEn/Apriori",
-    bgColor: "bg-[#C5E4E7]",
-  },
-];
+    {
+        title: 'Seed Church Bangkok',
+        type: 'Frontend',
+        image: '/assets/project/og-seed.png',
+        desc: 'Landing page for Seed Church Bangkok, a community church in Thailand.',
+        tags: ['Astro', 'TypeScript', 'React', 'TailwindCSS'],
+        liveUrl: 'https://www.seedchurchbkk.org',
+        codeUrl: 'https://github.com/seedbkkchurch/seedbkk-landing-astro',
+        bgColor: 'bg-[#9FD0E3]',
+    },
+    {
+        title: 'SeedCamp2025',
+        type: 'Frontend+Backend',
+        image: '/assets/project/seedcamp2025.png',
+        desc: 'Tool for tracking slip audits and managing team members for Seed Camp 2025. Features include user authentication, team management, and slip audit tracking.',
+        tags: ['Astro', 'TypeScript', 'React', 'TailwindCSS', 'Supabase'],
+        liveUrl: 'https://v0-seed-camp2025.vercel.app/',
+        codeUrl: 'https://github.com/NantipatSoftEn/SeedCamp2025',
+        bgColor: 'bg-[#B4BEE0]',
+    },
+    {
+        title: 'My Kanban Board',
+        type: 'Frontend+Backend',
+        image: '/assets/project/kanbanbord.png',
+        desc: 'A personal Kanban board application built with React and TypeScript. Allows users to create, edit, and delete tasks in a Kanban-style layout.',
+        tags: ['NextJS', 'TypeScript', 'TailwindCSS', 'ContextAPI', 'Supabase'],
+        liveUrl: 'https://v0-simple-kanban-board-flax.vercel.app',
+        codeUrl: 'https://github.com/NantipatSoftEn/MyKanbanBoard',
+        bgColor: 'bg-[#A6CECE]',
+        // githubApi: "https://api.github.com/repos/satnaing/haru-fashion",
+    },
+    {
+        title: 'quiet-time-tracker',
+        type: 'Frontend+Backend',
+        image: '/assets/project/devotion-time.png',
+        desc: 'A web application for tracking quiet times and reflections (Christian).',
+        tags: ['NextJS', 'TypeScript', 'TailwindCSS', 'ContextAPI', 'Supabase'],
+        liveUrl: 'https://v0-devotion-moniter.vercel.app',
+        codeUrl: 'https://github.com/NantipatSoftEn/quiet-time-tracker',
+        bgColor: 'bg-[#C5E4E7]',
+    },
+    {
+        title: 'Apriori Data mining',
+        type: 'Frontend',
+        image: '/assets/project/Apriori.png',
+        desc: 'pure js  Apriori algorithm for data mining.',
+        tags: ['javascript'],
+        liveUrl: 'https://nantipatsoften.github.io/Apriori/',
+        codeUrl: 'https://github.com/NantipatSoftEn/Apriori',
+        bgColor: 'bg-[#C5E4E7]',
+    },
+]
 ---
 
 <Layout title={`Projects | ${SITE.title}`}>
-  <Header activeNav="projects" />
-  <Main pageTitle="Projects" pageDesc="A showcase of my development projects and contributions.">
-    <section class="mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-        {projects.map((project, index) => (
-          <article class="project-card bg-skin-card border border-skin-line rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-            <div class={`project-image relative aspect-[16/9] ${project.bgColor}`}>
-              <img
-                src={project.image}
-                alt={project.title}
-                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                loading="lazy"
-              />
+    <Header activeNav="projects" />
+    <Main
+        pageTitle="Projects"
+        pageDesc="A showcase of my development projects and contributions."
+    >
+        <section class="mb-8">
+            <div class="md:grid-cols-2 mt-8 grid grid-cols-1 gap-6">
+                {
+                    projects.map((project, index) => (
+                        <article class="project-card overflow-hidden rounded-lg border border-skin-line bg-skin-card shadow-sm transition-shadow duration-300 hover:shadow-md">
+                            <div
+                                class={`project-image relative aspect-[16/9] ${project.bgColor}`}
+                            >
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="mb-2 flex items-center justify-between">
+                                    <h3 class="text-xl font-semibold text-skin-accent">
+                                        {project.title}
+                                    </h3>
+                                    <span class="rounded-full bg-skin-accent/10 px-2 py-1 text-sm text-skin-accent">
+                                        {project.type}
+                                    </span>
+                                </div>
+                                <p class="mb-4 text-sm leading-relaxed text-skin-base">
+                                    {project.desc}
+                                </p>
+                                <div class="mb-4 flex flex-wrap gap-2">
+                                    {project.tags.map(tag => (
+                                        <span class="text-skin-muted rounded border border-skin-line bg-skin-fill px-2 py-1 text-xs">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <a
+                                        href={project.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-1 rounded bg-skin-accent px-3 py-2 text-sm text-skin-inverted transition-colors hover:bg-opacity-90"
+                                        title={`View ${project.title} live demo`}
+                                    >
+                                        <svg
+                                            class="h-4 w-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                            />
+                                        </svg>
+                                        Live
+                                    </a>
+                                    <a
+                                        href={project.codeUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-1 rounded border border-skin-line px-3 py-2 text-sm transition-colors hover:bg-skin-fill"
+                                        title={`View ${project.title} source code`}
+                                    >
+                                        <svg
+                                            class="h-4 w-4"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        Code
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
             </div>
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="text-xl font-semibold text-skin-accent">{project.title}</h3>
-                <span class="text-sm px-2 py-1 bg-skin-accent/10 text-skin-accent rounded-full">{project.type}</span>
-              </div>
-              <p class="text-skin-base mb-4 text-sm leading-relaxed">{project.desc}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {project.tags.map(tag => (
-                  <span class="text-xs px-2 py-1 bg-skin-fill border border-skin-line rounded text-skin-muted">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div class="flex items-center gap-3">
-                <a 
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-1 text-sm bg-skin-accent text-skin-inverted px-3 py-2 rounded hover:bg-opacity-90 transition-colors"
-                  title={`View ${project.title} live demo`}
-                >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                  Live
-                </a>
-                <a 
-                  href={project.codeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-1 text-sm border border-skin-line px-3 py-2 rounded hover:bg-skin-fill transition-colors"
-                  title={`View ${project.title} source code`}
-                >
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  Code
-                </a>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
+        </section>
 
-    <!-- Project Statistics -->
-    <!-- <section class="mt-12 mb-8">
+        <!-- Project Statistics -->
+        <!-- <section class="mt-12 mb-8">
       <div class="bg-skin-card border border-skin-line rounded-lg p-6 shadow-sm">
         <h3 class="text-xl font-semibold mb-4 text-skin-accent">Project Overview</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -152,41 +179,49 @@ const projects = [
       </div>
     </section> -->
 
-    <!-- Technology Stack -->
-    <section class="mt-8">
-      <h3 class="text-xl font-semibold mb-6 text-skin-accent">Technologies Used</h3>
-      <div class="flex flex-wrap gap-2 mb-8">
-        {[...new Set(projects.flatMap(project => project.tags))].map(tag => (
-          <span class="px-3 py-1 bg-skin-accent/10 text-skin-accent rounded-full text-sm font-medium hover:bg-skin-accent/20 transition-colors cursor-default">
-            {tag}
-          </span>
-        ))}
-      </div>
-    </section>
-  </Main>
-  <Footer />
+        <!-- Technology Stack -->
+        <section class="mt-8">
+            <h3 class="mb-6 text-xl font-semibold text-skin-accent">
+                Technologies Used
+            </h3>
+            <div class="mb-8 flex flex-wrap gap-2">
+                {
+                    [...new Set(projects.flatMap(project => project.tags))].map(
+                        tag => (
+                            <span class="cursor-default rounded-full bg-skin-accent/10 px-3 py-1 text-sm font-medium text-skin-accent transition-colors hover:bg-skin-accent/20">
+                                {tag}
+                            </span>
+                        )
+                    )
+                }
+            </div>
+        </section>
+    </Main>
+    <Footer />
 </Layout>
 
 <style>
-  .project-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-2px);
-  }
-  
-  .project-image img {
-    object-fit: cover;
-  }
-  
-  @media (max-width: 768px) {
     .project-card {
-      transform: none;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
     }
-    
+
     .project-card:hover {
-      transform: none;
+        transform: translateY(-2px);
     }
-  }
+
+    .project-image img {
+        object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+        .project-card {
+            transform: none;
+        }
+
+        .project-card:hover {
+            transform: none;
+        }
+    }
 </style>

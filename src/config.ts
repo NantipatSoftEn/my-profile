@@ -64,16 +64,16 @@ export const SOCIALS: SocialObjects = [
     },
     {
         name: 'DEV',
-        href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on Twitch`,
+        href: 'can you please unlock my account',
+        linkTitle: `${SITE.title} on DEV`,
         active: true,
     },
-    {
-        name: 'BeeCrowd',
-        href: 'https://github.com/satnaing/astro-paper',
-        linkTitle: `${SITE.title} on BeeCrowd`,
-        active: true,
-    },
+    // {
+    //     name: 'BeeCrowd',
+    //     href: '',
+    //     linkTitle: `${SITE.title} on BeeCrowd`,
+    //     active: true,
+    // },
     {
         name: 'LeetCode',
         href: 'https://leetcode.com/u/NantipatSoftEn/',
@@ -138,7 +138,7 @@ export const SOCIALS: SocialObjects = [
         name: 'Steam',
         href: 'https://github.com/satnaing/astro-paper',
         linkTitle: `${SITE.title} on Steam`,
-        active: true,
+        active: false,
     },
     {
         name: 'Telegram',
