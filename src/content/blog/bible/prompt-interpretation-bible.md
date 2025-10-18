@@ -55,3 +55,11 @@ description: จดการตีความ BIBLE แบบย่อๆ
 ![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_7.png)
 ![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_8.png)
 ![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_9.png)
+
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_41.png)
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_42.png)
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_43.png)
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_44.png)
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_45.png)
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_46.png)
+![ ตีความ Bible](/assets/promtInterpertationBible/Screenshot_47.png)
