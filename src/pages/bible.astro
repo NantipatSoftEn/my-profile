@@ -1,0 +1,130 @@
+---
+import BibleReader from '@components/BibleReader';
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout title="พระคัมภีร - Bible Reader">
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+          📖 พระคัมภีรไทย KJV
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          อ่านพระคัมภีรออนไลน์ พร้อมระบบค้นหาและจดโน้ต เพื่อการศึกษาพระวจนะของพระเจ้า
+        </p>
+      </div>
+
+      <!-- Bible Reader Component -->
+      <BibleReader client:only="react" className="w-full" />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Custom styles for Bible Reader */
+  :global(.bible-reader) {
+    @apply min-h-screen;
+  }
+  
+  /* Smooth transitions */
+  :global(.bible-reader *) {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Custom scrollbar for better UX */
+  :global(.bible-reader ::-webkit-scrollbar) {
+    width: 6px;
+  }
+  
+  :global(.bible-reader ::-webkit-scrollbar-track) {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  :global(.bible-reader ::-webkit-scrollbar-thumb) {
+    @apply bg-gray-400 rounded-full;
+  }
+  
+  :global(.bible-reader ::-webkit-scrollbar-thumb:hover) {
+    @apply bg-gray-600;
+  }
+  
+  /* Responsive text sizing */
+  @media (max-width: 640px) {
+    :global(.bible-reader .verse-text) {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    :global(.bible-reader button),
+    :global(.bible-reader select),
+    :global(.bible-reader input) {
+      display: none !important;
+    }
+    
+    :global(.bible-reader .verse-text) {
+      color: black !important;
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+  }
+
+  /* Focus styles for accessibility */
+  :global(.bible-reader button:focus),
+  :global(.bible-reader select:focus),
+  :global(.bible-reader input:focus),
+  :global(.bible-reader textarea:focus) {
+    @apply ring-2 ring-blue-500 ring-offset-2 outline-none;
+  }
+
+  /* Animation for verse appearance */
+  :global(.bible-reader .verse-container) {
+    animation: fadeInUp 0.3s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Note highlight animation */
+  :global(.bible-reader .note-highlight) {
+    animation: highlightNote 0.5s ease-in-out;
+  }
+
+  @keyframes highlightNote {
+    0%, 100% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: #fef3c7;
+    }
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    :global(.bible-reader .grid) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    :global(.bible-reader .tabs) {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    
+    :global(.bible-reader .tab-button) {
+      flex-shrink: 0;
+    }
+  }
+</style>
