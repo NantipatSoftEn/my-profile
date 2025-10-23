@@ -2,7 +2,7 @@
 author: Army
 pubDatetime: 2025-10-18T12:03:00.000Z
 title: 6 Pillars of Code Quality
-featured: true 
+featured: true
 tags:
     - tech
     - fundamental

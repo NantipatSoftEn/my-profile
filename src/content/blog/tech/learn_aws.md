@@ -1,6 +1,6 @@
 ---
 author: Army
-title: Learn AWS 
+title: Learn AWS
 slug: learn_aws
 featured: true
 tags:
@@ -183,8 +183,7 @@ Intelligent-Tiering: จัดการอัตโนมัติตามก�
 
 ติดตามการใช้งานและ optimize cost
 
-
-## RDS 
+## RDS
 
 ✅ 1. Relational Database Service (RDS) – 5 นาที
 แนะนำภาพรวม:
@@ -274,7 +273,6 @@ ElastiCache = In-memory
 Keyspaces = Cassandra
 
 ## VPC
-
 
 ✅ 1. Why Should I Use VPC? – 3 นาที
 อธิบายเหตุผลที่ต้องใช้ VPC:
