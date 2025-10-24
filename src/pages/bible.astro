@@ -4,8 +4,8 @@ import Layout from '@layouts/Layout.astro'
 ---
 
 <Layout title="พระคัมภีร - Bible Reader">
-    <main class="container mx-auto px-4 py-8">
-        <div class="max-w-6xl mx-auto">
+    <main class="w-full px-4 py-8">
+        <div class="max-w-full mx-auto">
             <!-- Header -->
             <div class="text-center mb-8">
                 <h1 class="text-4xl font-bold text-gray-800 mb-4">
@@ -18,7 +18,7 @@ import Layout from '@layouts/Layout.astro'
             </div>
 
             <!-- Bible Reader Component -->
-            <BibleReader client:only="react" className="w-full" />
+            <BibleReader client:only="react" className="w-full max-w-7xl mx-auto" />
         </div>
     </main>
 </Layout>
@@ -51,11 +51,34 @@ import Layout from '@layouts/Layout.astro'
         @apply bg-gray-600;
     }
 
+    /* Better verse text sizing and spacing */
+    :global(.bible-reader .verse-text) {
+        font-size: 18px;
+        line-height: 1.8;
+        max-width: none;
+    }
+
+    /* Wider content areas */
+    :global(.bible-reader .verse-container) {
+        @apply w-full;
+    }
+
+    :global(.bible-reader .rounded-lg) {
+        @apply w-full;
+    }
+
     /* Responsive text sizing */
     @media (max-width: 640px) {
         :global(.bible-reader .verse-text) {
             font-size: 16px;
             line-height: 1.6;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        :global(.bible-reader .verse-text) {
+            font-size: 20px;
+            line-height: 1.9;
         }
     }
 

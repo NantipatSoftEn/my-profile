@@ -1,4 +1,5 @@
 import bibleData from '../assets/thaikjv.json'
+import englishBibleData from '../assets/kjv_strongs.json'
 import type {
     BibleVerse,
     BibleBook,
@@ -8,6 +9,7 @@ import type {
 
 // Type assertion to ensure correct typing
 const typedBibleData = bibleData as ThaiKJVData
+const typedEnglishBibleData = englishBibleData as ThaiKJVData
 
 // รับรายการหนังสือทั้งหมดในพระคัมภีร
 export function getBibleBooks(): BibleBook[] {
@@ -85,6 +87,66 @@ export function searchVerses(query: string): BibleVerse[] {
             verse.text.toLowerCase().includes(searchTerm) ||
             verse.book_name.toLowerCase().includes(searchTerm)
     )
+}
+
+// รับข้อพระคัมภีรภาษาอังกฤษ
+export function getEnglishVersesByChapter(
+    bookId: number,
+    chapter: number
+): BibleVerse[] {
+    return typedEnglishBibleData.verses
+        .filter(
+            (verse: BibleVerse) =>
+                verse.book === bookId && verse.chapter === chapter
+        )
+        .sort((a: BibleVerse, b: BibleVerse) => a.verse - b.verse)
+}
+
+// รับข้อพระคัมภีรภาษาอังกฤษเฉพาะข้อ
+export function getEnglishSpecificVerse(
+    bookId: number,
+    chapter: number,
+    verse: number
+): BibleVerse | undefined {
+    return typedEnglishBibleData.verses.find(
+        (v: BibleVerse) =>
+            v.book === bookId && v.chapter === chapter && v.verse === verse
+    )
+}
+
+// ค้นหาข้อพระคัมภีรภาษาอังกฤษ
+export function searchEnglishVerses(query: string): BibleVerse[] {
+    const searchTerm = query.toLowerCase().trim()
+
+    if (!searchTerm) return []
+
+    return typedEnglishBibleData.verses.filter(
+        (verse: BibleVerse) =>
+            verse.text.toLowerCase().includes(searchTerm) ||
+            verse.book_name.toLowerCase().includes(searchTerm)
+    )
+}
+
+// รับข้อพระคัมภีรทั้งสองภาษาพร้อมกัน
+export function getBilingualVersesByChapter(
+    bookId: number,
+    chapter: number
+): { thai: BibleVerse[]; english: BibleVerse[] } {
+    const thai = getVersesByChapter(bookId, chapter)
+    const english = getEnglishVersesByChapter(bookId, chapter)
+    
+    return { thai, english }
+}
+
+// ค้นหาข้อพระคัมภีรทั้งสองภาษา
+export function searchBilingualVerses(query: string): {
+    thai: BibleVerse[];
+    english: BibleVerse[];
+} {
+    const thai = searchVerses(query)
+    const english = searchEnglishVerses(query)
+    
+    return { thai, english }
 }
 
 // จัดการโน้ตพระคัมภีร (ใช้ JSON File API)

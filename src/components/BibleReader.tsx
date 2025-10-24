@@ -3,8 +3,8 @@ import type { BibleVerse, BibleBook, BibleNote } from '../types/bible'
 import {
     getBibleBooks,
     getChaptersByBook,
-    getVersesByChapter,
-    searchVerses,
+    getBilingualVersesByChapter,
+    searchBilingualVerses,
     BibleNotesManager,
     formatVerseReference,
 } from '@utils/bibleUtils'
@@ -19,8 +19,11 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
     const [selectedChapter, setSelectedChapter] = useState<number | null>(null)
     const [chapters, setChapters] = useState<number[]>([])
     const [verses, setVerses] = useState<BibleVerse[]>([])
+    const [englishVerses, setEnglishVerses] = useState<BibleVerse[]>([])
     const [searchQuery, setSearchQuery] = useState('')
     const [searchResults, setSearchResults] = useState<BibleVerse[]>([])
+    const [englishSearchResults, setEnglishSearchResults] = useState<BibleVerse[]>([])
+    const [showBilingual, setShowBilingual] = useState(false)
     const [activeTab, setActiveTab] = useState<'read' | 'search' | 'notes'>(
         'read'
     )
@@ -41,21 +44,24 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
     // อัพเดทข้อเมื่อเลือกบท
     useEffect(() => {
         if (selectedBook && selectedChapter) {
-            const chapterVerses = getVersesByChapter(
+            const bilingualVerses = getBilingualVersesByChapter(
                 selectedBook,
                 selectedChapter
             )
-            setVerses(chapterVerses)
+            setVerses(bilingualVerses.thai)
+            setEnglishVerses(bilingualVerses.english)
         }
     }, [selectedBook, selectedChapter])
 
     // ค้นหาข้อพระคัมภีร
     useEffect(() => {
         if (searchQuery.trim()) {
-            const results = searchVerses(searchQuery)
-            setSearchResults(results.slice(0, 50)) // จำกัดผลลัพธ์ไม่เกิน 50 รายการ
+            const bilingualResults = searchBilingualVerses(searchQuery)
+            setSearchResults(bilingualResults.thai.slice(0, 50)) // จำกัดผลลัพธ์ไม่เกิน 50 รายการ
+            setEnglishSearchResults(bilingualResults.english.slice(0, 50))
         } else {
             setSearchResults([])
+            setEnglishSearchResults([])
         }
     }, [searchQuery])
 
@@ -146,13 +152,40 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                         โน้ต ({notes.length})
                     </button>
                 </div>
+
+                {/* Language Toggle */}
+                <div className="flex items-center justify-center mt-4 space-x-4">
+                    <span className="text-sm text-gray-600">ภาษา:</span>
+                    <div className="flex bg-gray-100 rounded-lg p-1">
+                        <button
+                            onClick={() => setShowBilingual(false)}
+                            className={`px-3 py-1 rounded-md text-sm transition-colors ${
+                                showBilingual === false
+                                    ? 'bg-white text-gray-900 shadow'
+                                    : 'text-gray-600 hover:text-gray-900'
+                            }`}
+                        >
+                            ไทย
+                        </button>
+                        <button
+                            onClick={() => setShowBilingual(true)}
+                            className={`px-3 py-1 rounded-md text-sm transition-colors ${
+                                showBilingual
+                                    ? 'bg-white text-gray-900 shadow'
+                                    : 'text-gray-600 hover:text-gray-900'
+                            }`}
+                        >
+                            ไทย + English
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {/* Read Tab */}
             {activeTab === 'read' && (
-                <div className="space-y-6">
+                <div className="space-y-6 w-full">
                     {/* Book and Chapter Selectors */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                         {/* Book Selector */}
                         <div>
                             <label
@@ -214,30 +247,39 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
 
                     {/* Verses Display */}
                     {verses.length > 0 && (
-                        <div className="bg-white rounded-lg shadow-md p-6">
+                        <div className="bg-white rounded-lg shadow-md p-8 w-full">
                             <h2 className="text-xl font-bold text-gray-800 mb-4">
                                 {verses[0]?.book_name} บทที่ {selectedChapter}
                             </h2>
                             <div className="space-y-3">
-                                {verses.map(verse => {
+                                {verses.map((verse, index) => {
                                     const verseNotes = getVerseNotes(
                                         verse.book,
                                         verse.chapter,
                                         verse.verse
                                     )
+                                    const englishVerse = englishVerses[index]
+                                    
                                     return (
                                         <div
                                             key={`${verse.book}-${verse.chapter}-${verse.verse}`}
                                             className="group relative verse-container"
                                         >
-                                            <div className="flex items-start space-x-3 p-3 rounded-md hover:bg-gray-50">
-                                                <span className="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-sm font-medium">
+                                            <div className="flex items-start space-x-4 p-4 rounded-md hover:bg-gray-50 w-full">
+                                                <span className="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-sm font-medium">
                                                     {verse.verse}
                                                 </span>
-                                                <div className="flex-1">
-                                                    <p className="text-gray-800 leading-relaxed verse-text">
-                                                        {verse.text}
-                                                    </p>
+                                                <div className="flex-1 min-w-0 w-full">
+                                                    <div className={showBilingual ? "space-y-3" : ""}>
+                                                        <p className="text-gray-800 leading-relaxed verse-text text-lg">
+                                                            {verse.text}
+                                                        </p>
+                                                        {showBilingual && englishVerse && (
+                                                            <p className="text-gray-600 leading-relaxed verse-text text-lg italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r">
+                                                                {englishVerse.text}
+                                                            </p>
+                                                        )}
+                                                    </div>
                                                     {verseNotes.length > 0 && (
                                                         <div className="mt-2 space-y-1">
                                                             {verseNotes.map(
@@ -315,38 +357,49 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                     </div>
 
                     {searchResults.length > 0 && (
-                        <div className="bg-white rounded-lg shadow-md p-6">
-                            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                        <div className="bg-white rounded-lg shadow-md p-8 w-full">
+                            <h3 className="text-xl font-semibold text-gray-800 mb-6">
                                 ผลการค้นหา ({searchResults.length} รายการ)
                             </h3>
-                            <div className="space-y-4">
-                                {searchResults.map(verse => (
-                                    <div
-                                        key={`${verse.book}-${verse.chapter}-${verse.verse}`}
-                                        className="border-b border-gray-200 pb-4 last:border-b-0"
-                                    >
-                                        <div className="flex justify-between items-start mb-2">
-                                            <h4 className="font-medium text-blue-600">
-                                                {formatVerseReference(
-                                                    verse.book_name,
-                                                    verse.chapter,
-                                                    verse.verse
+                            <div className="space-y-6">
+                                {searchResults.map((verse, index) => {
+                                    const englishVerse = englishSearchResults[index]
+                                    
+                                    return (
+                                        <div
+                                            key={`${verse.book}-${verse.chapter}-${verse.verse}`}
+                                            className="border-b border-gray-200 pb-4 last:border-b-0"
+                                        >
+                                            <div className="flex justify-between items-start mb-2">
+                                                <h4 className="font-medium text-blue-600">
+                                                    {formatVerseReference(
+                                                        verse.book_name,
+                                                        verse.chapter,
+                                                        verse.verse
+                                                    )}
+                                                </h4>
+                                                <button
+                                                    onClick={() =>
+                                                        openNoteModal(verse)
+                                                    }
+                                                    className="text-sm text-gray-500 hover:text-blue-600"
+                                                >
+                                                    + โน้ต
+                                                </button>
+                                            </div>
+                                            <div className={showBilingual ? "space-y-3" : ""}>
+                                                <p className="text-gray-800 text-lg leading-relaxed">
+                                                    {verse.text}
+                                                </p>
+                                                {showBilingual && englishVerse && (
+                                                    <p className="text-gray-600 text-lg leading-relaxed italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r">
+                                                        {englishVerse.text}
+                                                    </p>
                                                 )}
-                                            </h4>
-                                            <button
-                                                onClick={() =>
-                                                    openNoteModal(verse)
-                                                }
-                                                className="text-sm text-gray-500 hover:text-blue-600"
-                                            >
-                                                + โน้ต
-                                            </button>
+                                            </div>
                                         </div>
-                                        <p className="text-gray-800">
-                                            {verse.text}
-                                        </p>
-                                    </div>
-                                ))}
+                                    )
+                                })}
                             </div>
                         </div>
                     )}
@@ -355,9 +408,9 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
 
             {/* Notes Tab */}
             {activeTab === 'notes' && (
-                <div className="space-y-6">
-                    <div className="bg-white rounded-lg shadow-md p-6">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                <div className="space-y-6 w-full">
+                    <div className="bg-white rounded-lg shadow-md p-8 w-full">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-6">
                             โน้ตทั้งหมด ({notes.length} รายการ)
                         </h3>
                         {notes.length === 0 ? (
