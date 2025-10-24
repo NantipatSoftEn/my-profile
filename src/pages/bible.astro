@@ -136,6 +136,80 @@ import Layout from '@layouts/Layout.astro'
         }
     }
 
+    /* Strong's Tooltip Styles */
+    :global(.strongs-tooltip-container) {
+        position: relative;
+        display: inline-block;
+    }
+
+    :global(.strongs-word) {
+        cursor: help;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        color: #2563eb;
+        transition: color 0.2s ease;
+    }
+
+    :global(.strongs-word:hover) {
+        color: #1d4ed8;
+    }
+
+    :global(.strongs-tooltip) {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 8px;
+        padding: 12px 16px;
+        background-color: #1f2937;
+        color: white;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+        min-width: 320px;
+        max-width: 384px;
+        word-wrap: break-word;
+        pointer-events: none;
+    }
+
+    :global(.strongs-tooltip-container:hover .strongs-tooltip) {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* Tooltip arrow */
+    :global(.strongs-tooltip::after) {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #1f2937;
+    }
+
+    /* Mobile responsive tooltips */
+    @media (max-width: 768px) {
+        :global(.strongs-tooltip) {
+            min-width: 280px;
+            max-width: 320px;
+            font-size: 0.8rem;
+            padding: 10px 12px;
+        }
+
+        :global(.strongs-tooltip-container:hover .strongs-tooltip) {
+            transform: translateX(-50%) translateY(-2px);
+        }
+    }
+
     /* Mobile-specific improvements */
     @media (max-width: 768px) {
         :global(.bible-reader .grid) {

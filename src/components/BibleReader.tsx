@@ -8,6 +8,7 @@ import {
     BibleNotesManager,
     formatVerseReference,
 } from '@utils/bibleUtils'
+import { renderTextWithStrongsTooltips } from '@utils/strongsHelper'
 
 interface BibleReaderProps {
     className?: string
@@ -274,9 +275,9 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                         <p className="text-gray-800 leading-relaxed verse-text text-lg">
                                                             {verse.text}
                                                         </p>
-                                                        {showBilingual && englishVerse && (
-                                                            <p className="text-gray-600 leading-relaxed verse-text text-lg italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r">
-                                                                {englishVerse.text}
+                                                        {englishVerse && (
+                                                            <p className={`leading-relaxed verse-text text-lg ${showBilingual ? 'text-gray-600 italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r mt-3' : 'text-blue-700 mt-2'}`}>
+                                                                {renderTextWithStrongsTooltips(englishVerse.text)}
                                                             </p>
                                                         )}
                                                     </div>
@@ -391,9 +392,9 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                 <p className="text-gray-800 text-lg leading-relaxed">
                                                     {verse.text}
                                                 </p>
-                                                {showBilingual && englishVerse && (
-                                                    <p className="text-gray-600 text-lg leading-relaxed italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r">
-                                                        {englishVerse.text}
+                                                {englishVerse && (
+                                                    <p className={`text-lg leading-relaxed ${showBilingual ? 'text-gray-600 italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r mt-3' : 'text-blue-700 mt-2'}`}>
+                                                        {renderTextWithStrongsTooltips(englishVerse.text)}
                                                     </p>
                                                 )}
                                             </div>
