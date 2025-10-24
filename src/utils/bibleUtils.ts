@@ -87,91 +87,142 @@ export function searchVerses(query: string): BibleVerse[] {
     )
 }
 
-// จัดการโน้ตพระคัมภีร (ใช้ Local Storage)
+// จัดการโน้ตพระคัมภีร (ใช้ JSON File API)
 export class BibleNotesManager {
-    private static readonly STORAGE_KEY = 'bible_notes'
+    private static readonly API_ENDPOINT = '/api/bible-notes'
 
-    static getNotes(): BibleNote[] {
-        if (globalThis.window === undefined) return []
-
-        const stored = localStorage.getItem(this.STORAGE_KEY)
-        if (!stored) return []
-
+    static async getNotes(): Promise<BibleNote[]> {
         try {
-            const notes = JSON.parse(stored)
+            const response = await fetch(this.API_ENDPOINT)
+            if (!response.ok) return []
+            
+            const notes = await response.json()
             return notes.map((note: any) => ({
                 ...note,
                 created: new Date(note.created),
                 updated: new Date(note.updated),
             }))
-        } catch {
+        } catch (error) {
+            console.error('Error fetching notes:', error)
             return []
         }
     }
 
-    static saveNote(
+    static async saveNote(
         note: Omit<BibleNote, 'id' | 'created' | 'updated'>
-    ): BibleNote {
-        const notes = this.getNotes()
-        const newNote: BibleNote = {
-            ...note,
-            id: Date.now().toString(),
-            created: new Date(),
-            updated: new Date(),
+    ): Promise<BibleNote | null> {
+        try {
+            const response = await fetch(this.API_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(note),
+            })
+
+            if (!response.ok) return null
+            
+            const newNote = await response.json()
+            return {
+                ...newNote,
+                created: new Date(newNote.created),
+                updated: new Date(newNote.updated),
+            }
+        } catch (error) {
+            console.error('Error saving note:', error)
+            return null
         }
-
-        notes.push(newNote)
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(notes))
-
-        return newNote
     }
 
-    static updateNote(
+    static async updateNote(
         id: string,
-        updates: Partial<BibleNote>
-    ): BibleNote | null {
-        const notes = this.getNotes()
-        const index = notes.findIndex(note => note.id === id)
+        updates: { note: string }
+    ): Promise<BibleNote | null> {
+        try {
+            const response = await fetch(this.API_ENDPOINT, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, ...updates }),
+            })
 
-        if (index === -1) return null
-
-        notes[index] = {
-            ...notes[index],
-            ...updates,
-            updated: new Date(),
+            if (!response.ok) return null
+            
+            const updatedNote = await response.json()
+            return {
+                ...updatedNote,
+                created: new Date(updatedNote.created),
+                updated: new Date(updatedNote.updated),
+            }
+        } catch (error) {
+            console.error('Error updating note:', error)
+            return null
         }
-
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(notes))
-        return notes[index]
     }
 
-    static deleteNote(id: string): boolean {
-        const notes = this.getNotes()
-        const filtered = notes.filter(note => note.id !== id)
+    static async deleteNote(id: string): Promise<boolean> {
+        try {
+            const response = await fetch(this.API_ENDPOINT, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            })
 
-        if (filtered.length === notes.length) return false
-
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(filtered))
-        return true
+            return response.ok
+        } catch (error) {
+            console.error('Error deleting note:', error)
+            return false
+        }
     }
 
-    static getNotesByVerse(
+    static async getNotesByVerse(
         bookId: number,
         chapter: number,
         verse: number
-    ): BibleNote[] {
-        return this.getNotes().filter(
-            note =>
-                note.bookId === bookId &&
-                note.chapter === chapter &&
-                note.verse === verse
-        )
+    ): Promise<BibleNote[]> {
+        try {
+            const url = `${this.API_ENDPOINT}?bookId=${bookId}&chapter=${chapter}&verse=${verse}`
+            const response = await fetch(url)
+            if (!response.ok) return []
+            
+            const notes = await response.json()
+            return notes.map((note: any) => ({
+                ...note,
+                created: new Date(note.created),
+                updated: new Date(note.updated),
+            }))
+        } catch (error) {
+            console.error('Error fetching verse notes:', error)
+            return []
+        }
     }
 
-    static getNotesByChapter(bookId: number, chapter: number): BibleNote[] {
-        return this.getNotes().filter(
-            note => note.bookId === bookId && note.chapter === chapter
-        )
+    static async getNotesByChapter(bookId: number, chapter: number): Promise<BibleNote[]> {
+        try {
+            const url = `${this.API_ENDPOINT}?bookId=${bookId}&chapter=${chapter}`
+            const response = await fetch(url)
+            if (!response.ok) return []
+            
+            const notes = await response.json()
+            return notes.map((note: any) => ({
+                ...note,
+                created: new Date(note.created),
+                updated: new Date(note.updated),
+            }))
+        } catch (error) {
+            console.error('Error fetching chapter notes:', error)
+            return []
+        }
+    }
+
+    // Legacy method for backward compatibility
+    static getNotesSync(): BibleNote[] {
+        // Return empty array since async is required
+        console.warn('getNotesSync is deprecated. Use getNotes() instead.')
+        return []
     }
 }
 

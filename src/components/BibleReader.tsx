@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import type { BibleVerse, BibleBook } from '../types/bible'
+import type { BibleVerse, BibleBook, BibleNote } from '../types/bible'
 import {
     getBibleBooks,
     getChaptersByBook,
@@ -24,7 +24,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
     const [activeTab, setActiveTab] = useState<'read' | 'search' | 'notes'>(
         'read'
     )
-    const [notes, setNotes] = useState(BibleNotesManager.getNotes())
+    const [notes, setNotes] = useState<BibleNote[]>([])
     const [newNote, setNewNote] = useState('')
     const [selectedVerse, setSelectedVerse] = useState<BibleVerse | null>(null)
     const [showNoteModal, setShowNoteModal] = useState(false)
@@ -59,25 +59,41 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
         }
     }, [searchQuery])
 
-    const handleAddNote = () => {
+    // Load notes on component mount
+    useEffect(() => {
+        const loadNotes = async () => {
+            const fetchedNotes = await BibleNotesManager.getNotes()
+            setNotes(fetchedNotes)
+        }
+        loadNotes()
+    }, [])
+
+    const handleAddNote = async () => {
         if (selectedVerse && newNote.trim()) {
-            BibleNotesManager.saveNote({
+            const savedNote = await BibleNotesManager.saveNote({
                 bookId: selectedVerse.book,
                 bookName: selectedVerse.book_name,
                 chapter: selectedVerse.chapter,
                 verse: selectedVerse.verse,
                 note: newNote.trim(),
             })
-            setNotes(BibleNotesManager.getNotes())
-            setNewNote('')
-            setShowNoteModal(false)
-            setSelectedVerse(null)
+            
+            if (savedNote) {
+                const updatedNotes = await BibleNotesManager.getNotes()
+                setNotes(updatedNotes)
+                setNewNote('')
+                setShowNoteModal(false)
+                setSelectedVerse(null)
+            }
         }
     }
 
-    const handleDeleteNote = (noteId: string) => {
-        BibleNotesManager.deleteNote(noteId)
-        setNotes(BibleNotesManager.getNotes())
+    const handleDeleteNote = async (noteId: string) => {
+        const success = await BibleNotesManager.deleteNote(noteId)
+        if (success) {
+            const updatedNotes = await BibleNotesManager.getNotes()
+            setNotes(updatedNotes)
+        }
     }
 
     const openNoteModal = (verse: BibleVerse) => {
