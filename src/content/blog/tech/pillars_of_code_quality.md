@@ -2,6 +2,7 @@
 author: Army
 pubDatetime: 2025-10-18T12:03:00.000Z
 title: 6 Pillars of Code Quality
+slug: pillars_of_code_quality
 featured: true
 tags:
     - tech
