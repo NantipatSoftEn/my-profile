@@ -142,7 +142,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                     >
                         ค้นหา
                     </button>
-                    <button
+                    {/* <button
                         onClick={() => setActiveTab('notes')}
                         className={`px-4 py-2 rounded-md transition-colors tab-button ${
                             activeTab === 'notes'
@@ -151,7 +151,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                         }`}
                     >
                         โน้ต ({notes.length})
-                    </button>
+                    </button> */}
                 </div>
 
                 {/* Language Toggle */}
@@ -277,7 +277,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                         </p>
                                                         {englishVerse && (
                                                             <p className={`leading-relaxed verse-text text-lg ${showBilingual ? 'text-gray-600 italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r mt-3' : 'text-blue-700 mt-2'}`}>
-                                                                {renderTextWithStrongsTooltips(englishVerse.text)}
+                                                                {showBilingual && renderTextWithStrongsTooltips(englishVerse.text)}
                                                             </p>
                                                         )}
                                                     </div>
@@ -379,14 +379,14 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                         verse.verse
                                                     )}
                                                 </h4>
-                                                <button
+                                                {/* <button
                                                     onClick={() =>
                                                         openNoteModal(verse)
                                                     }
                                                     className="text-sm text-gray-500 hover:text-blue-600"
                                                 >
                                                     + โน้ต
-                                                </button>
+                                                </button> */}
                                             </div>
                                             <div className={showBilingual ? "space-y-3" : ""}>
                                                 <p className="text-gray-800 text-lg leading-relaxed">
@@ -439,7 +439,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                         note.verse
                                                     )}
                                                 </h4>
-                                                <button
+                                                {/* <button
                                                     onClick={() =>
                                                         handleDeleteNote(
                                                             note.id
@@ -448,7 +448,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                     className="text-red-600 hover:text-red-800 text-sm"
                                                 >
                                                     ลบ
-                                                </button>
+                                                </button> */}
                                             </div>
                                             <p className="text-gray-800 mb-2">
                                                 {note.note}
