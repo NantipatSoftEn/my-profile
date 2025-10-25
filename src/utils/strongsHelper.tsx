@@ -97,7 +97,9 @@ export function renderTextWithStrongsTooltips(text: string): JSX.Element[] {
                     word={cleanedWord}
                     strongsNumber={strongsNum}
                     definition={definition}
-                />
+                />,
+                // เพิ่มระยะห่างหลังคำ
+                <span key={`space-${elementIndex++}`}> </span>
             )
         }
 
