@@ -302,7 +302,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                                                     'th-TH'
                                                                                 )}
                                                                             </span>
-                                                                            <button
+                                                                            {/* <button
                                                                                 onClick={() =>
                                                                                     handleDeleteNote(
                                                                                         note.id
@@ -311,7 +311,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                                                 className="text-xs text-red-600 hover:text-red-800"
                                                                             >
                                                                                 ลบ
-                                                                            </button>
+                                                                            </button> */}
                                                                         </div>
                                                                     </div>
                                                                 )
@@ -319,14 +319,14 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                                                         </div>
                                                     )}
                                                 </div>
-                                                <button
+                                                {/* <button
                                                     onClick={() =>
                                                         openNoteModal(verse)
                                                     }
                                                     className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 hover:text-blue-800 text-sm"
                                                 >
                                                     + โน้ต
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </div>
                                     )
