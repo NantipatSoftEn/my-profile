@@ -1,7 +1,7 @@
 ---
 author: Army
-pubDatetime: 2025-10-13T12:03:00.000Z
-title: c#
+pubDatetime: 2025-10-29T12:03:00.000Z
+title: study_c_shape
 slug: study_c_shape
 featured: true
 tags:
@@ -13,8 +13,11 @@ description:  กำลังจะได้งานมารื้อฟื้
 
 ## Keyword
 
-.net 7, grpc, entity framework, sql server,
-Asp.net webform, stored procedure, sql server,WebForms, MVC, WebAPI
+Stack ใหม่ใช้ 
+.net 7, grpc, entity framework, sql server, 
+
+Stack เก่า
+Asp.net webform, stored procedure, sql server
 
 ## WebFroms
 
