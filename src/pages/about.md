@@ -10,7 +10,7 @@ title: 'About'
 Hi! I’m a Full-stack developer with 5+ years of experience. I’ve worked on financial systems and tools for big organizations. I enjoy solving real problems with code and making things that are useful. I also help out at my church with tech stuff in my free time.
 I care developer experience
 
-<br/> 
+<br/>
 
 I will update more soon
 

@@ -1,0 +1,228 @@
+---
+import BibleReader from '@components/BibleReader'
+import Layout from '@layouts/Layout.astro'
+---
+
+<Layout title="พระคัมภีร - Bible Reader">
+    <main class="w-full px-4 py-8">
+        <div class="max-w-full mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                    📖 BIBLE KJV
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                  จดความลึกซึ่งของ bible ของผมเองเพื่อเอาไว้ทบทวน
+                </p>
+            </div>
+
+            <!-- Bible Reader Component -->
+            <BibleReader client:only="react" className="w-full max-w-7xl mx-auto" />
+        </div>
+    </main>
+</Layout>
+
+<style>
+    /* Custom styles for Bible Reader */
+    :global(.bible-reader) {
+        @apply min-h-screen;
+    }
+
+    /* Smooth transitions */
+    :global(.bible-reader *) {
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Custom scrollbar for better UX */
+    :global(.bible-reader ::-webkit-scrollbar) {
+        width: 6px;
+    }
+
+    :global(.bible-reader ::-webkit-scrollbar-track) {
+        @apply bg-gray-100 rounded-full;
+    }
+
+    :global(.bible-reader ::-webkit-scrollbar-thumb) {
+        @apply bg-gray-400 rounded-full;
+    }
+
+    :global(.bible-reader ::-webkit-scrollbar-thumb:hover) {
+        @apply bg-gray-600;
+    }
+
+    /* Better verse text sizing and spacing */
+    :global(.bible-reader .verse-text) {
+        font-size: 18px;
+        line-height: 1.8;
+        max-width: none;
+    }
+
+    /* Wider content areas */
+    :global(.bible-reader .verse-container) {
+        @apply w-full;
+    }
+
+    :global(.bible-reader .rounded-lg) {
+        @apply w-full;
+    }
+
+    /* Responsive text sizing */
+    @media (max-width: 640px) {
+        :global(.bible-reader .verse-text) {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        :global(.bible-reader .verse-text) {
+            font-size: 20px;
+            line-height: 1.9;
+        }
+    }
+
+    /* Print styles */
+    @media print {
+        :global(.bible-reader button),
+        :global(.bible-reader select),
+        :global(.bible-reader input) {
+            display: none !important;
+        }
+
+        :global(.bible-reader .verse-text) {
+            color: black !important;
+            font-size: 12pt;
+            line-height: 1.4;
+        }
+    }
+
+    /* Focus styles for accessibility */
+    :global(.bible-reader button:focus),
+    :global(.bible-reader select:focus),
+    :global(.bible-reader input:focus),
+    :global(.bible-reader textarea:focus) {
+        @apply ring-2 ring-blue-500 ring-offset-2 outline-none;
+    }
+
+    /* Animation for verse appearance */
+    :global(.bible-reader .verse-container) {
+        animation: fadeInUp 0.3s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Note highlight animation */
+    :global(.bible-reader .note-highlight) {
+        animation: highlightNote 0.5s ease-in-out;
+    }
+
+    @keyframes highlightNote {
+        0%,
+        100% {
+            background-color: transparent;
+        }
+        50% {
+            background-color: #fef3c7;
+        }
+    }
+
+    /* Strong's Tooltip Styles */
+    :global(.strongs-tooltip-container) {
+        position: relative;
+        display: inline-block;
+    }
+
+    :global(.strongs-word) {
+        cursor: help;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        color: #2563eb;
+        transition: color 0.2s ease;
+    }
+
+    :global(.strongs-word:hover) {
+        color: #1d4ed8;
+    }
+
+    :global(.strongs-tooltip) {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 8px;
+        padding: 12px 16px;
+        background-color: #1f2937;
+        color: white;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+        min-width: 320px;
+        max-width: 384px;
+        word-wrap: break-word;
+        pointer-events: none;
+    }
+
+    :global(.strongs-tooltip-container:hover .strongs-tooltip) {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* Tooltip arrow */
+    :global(.strongs-tooltip::after) {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #1f2937;
+    }
+
+    /* Mobile responsive tooltips */
+    @media (max-width: 768px) {
+        :global(.strongs-tooltip) {
+            min-width: 280px;
+            max-width: 320px;
+            font-size: 0.8rem;
+            padding: 10px 12px;
+        }
+
+        :global(.strongs-tooltip-container:hover .strongs-tooltip) {
+            transform: translateX(-50%) translateY(-2px);
+        }
+    }
+
+    /* Mobile-specific improvements */
+    @media (max-width: 768px) {
+        :global(.bible-reader .grid) {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        :global(.bible-reader .tabs) {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        :global(.bible-reader .tab-button) {
+            flex-shrink: 0;
+        }
+    }
+</style>
