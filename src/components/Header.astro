@@ -106,6 +106,26 @@ const { activeNav } = Astro.props
                             Tags
                         </a>
                     </li>
+                    <li class="dropdown-container">
+                        <button class="dropdown-btn">
+                            Tools
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="dropdown-arrow"
+                            >
+                                <path d="M7 10l5 5 5-5z"></path>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/invest/">💰 Invest Calculator</a></li>
+                            <li><a href="/clockif/">⏰ IF Clock</a></li>
+                            <li><a href="/bible/">📖 Bible</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a
                             href="/about/"
@@ -209,6 +229,50 @@ const { activeNav } = Astro.props
         }
         nav a.active svg {
             @apply fill-skin-accent;
+        }
+
+        /* Dropdown styles */
+        .dropdown-container {
+            @apply relative;
+        }
+        .dropdown-btn {
+            @apply flex w-full items-center justify-center gap-1 px-4 py-3 font-medium hover:text-skin-accent sm:px-2 sm:py-1;
+        }
+        .dropdown-arrow {
+            @apply transition-transform duration-200;
+        }
+        .dropdown-menu {
+            @apply invisible absolute left-1/2 top-full z-50 min-w-[180px] -translate-x-1/2 rounded-lg border border-skin-line bg-skin-fill opacity-0 shadow-lg transition-all duration-200;
+        }
+        .dropdown-container:hover .dropdown-menu,
+        .dropdown-container:focus-within .dropdown-menu {
+            @apply visible opacity-100;
+        }
+        .dropdown-container:hover .dropdown-arrow,
+        .dropdown-container:focus-within .dropdown-arrow {
+            @apply rotate-180;
+        }
+        .dropdown-menu li {
+            @apply col-span-2;
+        }
+        .dropdown-menu li a {
+            @apply block w-full px-4 py-2 text-left text-sm hover:bg-skin-card hover:text-skin-accent;
+        }
+        .dropdown-menu li:first-child a {
+            @apply rounded-t-lg;
+        }
+        .dropdown-menu li:last-child a {
+            @apply rounded-b-lg;
+        }
+
+        /* Mobile dropdown */
+        @media (max-width: 639px) {
+            .dropdown-menu {
+                @apply static visible translate-x-0 border-0 bg-transparent opacity-100 shadow-none;
+            }
+            .dropdown-menu li a {
+                @apply py-2 text-center;
+            }
         }
 
         nav button {
