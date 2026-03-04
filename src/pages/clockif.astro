@@ -1,0 +1,15 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import Main from '@layouts/Main.astro'
+import ClockIF from '@components/ClockIF'
+---
+
+<Layout title="IF Clock | นาฬิกา Intermittent Fasting">
+    <Header />
+    <Main pageTitle="IF Clock" pageDesc="นาฬิกาช่วยติดตาม Intermittent Fasting">
+        <ClockIF client:load />
+    </Main>
+    <Footer />
+</Layout>
