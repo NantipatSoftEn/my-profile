@@ -4,6 +4,7 @@ interface MonthlyData {
     month: number
     principal: number
     profit: number
+    expense: number
     total: number
 }
 
@@ -11,11 +12,13 @@ export default function InvestCalculator() {
     const [principal, setPrincipal] = useState<string>('10000')
     const [monthlyRate, setMonthlyRate] = useState<string>('5')
     const [months, setMonths] = useState<string>('12')
+    const [monthlyExpense, setMonthlyExpense] = useState<string>('0')
 
     const tableData = useMemo<MonthlyData[]>(() => {
         const p = Number.parseFloat(principal) || 0
         const rate = Number.parseFloat(monthlyRate) || 0
         const m = Number.parseInt(months) || 0
+        const expense = Number.parseFloat(monthlyExpense) || 0
 
         if (p <= 0 || rate <= 0 || m <= 0) return []
 
@@ -24,18 +27,20 @@ export default function InvestCalculator() {
 
         for (let i = 1; i <= m; i++) {
             const profit = currentPrincipal * (rate / 100)
-            const total = currentPrincipal + profit
+            const total = currentPrincipal + profit - expense
             data.push({
                 month: i,
                 principal: currentPrincipal,
                 profit: profit,
-                total: total,
+                expense: expense,
+                total: Math.max(total, 0),
             })
-            currentPrincipal = total // ทบต้นทบกำไร
+            currentPrincipal = Math.max(total, 0) // ทบต้นทบกำไร (หักค่าใช้จ่าย)
+            if (currentPrincipal <= 0) break // หยุดถ้าเงินหมด
         }
 
         return data
-    }, [principal, monthlyRate, months])
+    }, [principal, monthlyRate, months, monthlyExpense])
 
     const formatNumber = (num: number): string => {
         return num.toLocaleString('th-TH', {
@@ -45,6 +50,7 @@ export default function InvestCalculator() {
     }
 
     const totalProfit = tableData.reduce((sum, row) => sum + row.profit, 0)
+    const totalExpense = tableData.reduce((sum, row) => sum + row.expense, 0)
     const finalAmount = tableData.length > 0 ? (tableData.at(-1)?.total ?? 0) : 0
 
     return (
@@ -54,7 +60,7 @@ export default function InvestCalculator() {
                 <h2 className="mb-4 text-xl font-semibold text-skin-accent">
                     คำนวณผลตอบแทนทบต้น
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-3">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <div>
                         <label
                             htmlFor="principal"
@@ -107,12 +113,29 @@ export default function InvestCalculator() {
                             min="1"
                         />
                     </div>
+                    <div>
+                        <label
+                            htmlFor="expense"
+                            className="mb-2 block text-sm font-medium"
+                        >
+                            ค่าใช้จ่าย/เดือน (บาท)
+                        </label>
+                        <input
+                            type="number"
+                            id="expense"
+                            value={monthlyExpense}
+                            onChange={e => setMonthlyExpense(e.target.value)}
+                            className="w-full rounded-lg border border-skin-line bg-skin-fill px-4 py-2 focus:border-skin-accent focus:outline-none"
+                            placeholder="0"
+                            min="0"
+                        />
+                    </div>
                 </div>
             </div>
 
             {/* Summary */}
             {tableData.length > 0 && (
-                <div className="mb-8 grid gap-4 sm:grid-cols-3">
+                <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <div className="rounded-lg border border-skin-line bg-skin-card p-4 text-center">
                         <p className="text-sm opacity-70">เงินต้นเริ่มต้น</p>
                         <p className="text-2xl font-bold text-skin-accent">
@@ -123,6 +146,12 @@ export default function InvestCalculator() {
                         <p className="text-sm opacity-70">กำไรรวมทั้งหมด</p>
                         <p className="text-2xl font-bold text-green-500">
                             ฿{formatNumber(totalProfit)}
+                        </p>
+                    </div>
+                    <div className="rounded-lg border border-skin-line bg-skin-card p-4 text-center">
+                        <p className="text-sm opacity-70">ค่าใช้จ่ายรวม</p>
+                        <p className="text-2xl font-bold text-red-500">
+                            ฿{formatNumber(totalExpense)}
                         </p>
                     </div>
                     <div className="rounded-lg border border-skin-line bg-skin-card p-4 text-center">
@@ -150,6 +179,9 @@ export default function InvestCalculator() {
                                     กำไร (บาท)
                                 </th>
                                 <th className="px-4 py-3 text-right text-sm font-semibold">
+                                    ค่าใช้จ่าย (บาท)
+                                </th>
+                                <th className="px-4 py-3 text-right text-sm font-semibold">
                                     ยอดรวม (บาท)
                                 </th>
                             </tr>
@@ -171,6 +203,9 @@ export default function InvestCalculator() {
                                     <td className="px-4 py-3 text-right text-green-500">
                                         +{formatNumber(row.profit)}
                                     </td>
+                                    <td className="px-4 py-3 text-right text-red-500">
+                                        -{formatNumber(row.expense)}
+                                    </td>
                                     <td className="px-4 py-3 text-right font-semibold">
                                         {formatNumber(row.total)}
                                     </td>
@@ -183,6 +218,9 @@ export default function InvestCalculator() {
                                 <td className="px-4 py-3 text-right">-</td>
                                 <td className="px-4 py-3 text-right font-bold text-green-500">
                                     +{formatNumber(totalProfit)}
+                                </td>
+                                <td className="px-4 py-3 text-right font-bold text-red-500">
+                                    -{formatNumber(totalExpense)}
                                 </td>
                                 <td className="px-4 py-3 text-right font-bold text-skin-accent">
                                     {formatNumber(finalAmount)}
