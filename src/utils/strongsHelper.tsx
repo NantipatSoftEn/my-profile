@@ -1,4 +1,5 @@
 import { strongsHebrewDictionary } from '@assets/strongs-hebrew-dictionary'
+import { strongsGreekDictionary } from '@assets/greek/strongs-greek-dictionary.js'
 
 export interface StrongsNumber {
     number: string
@@ -21,8 +22,8 @@ export function parseStrongsNumbers(text: string): StrongsNumber[] {
     const strongsNumbers: StrongsNumber[] = []
     
     // Regular expression เพื่อจับ pattern ของ Strong's numbers
-    // จับทั้ง word{H1234} และ {(H5678)}
-    const strongsPattern = /([^{]*)\{(H\d+)\}(?:\{([^}]*)\})?/g
+    // จับทั้ง word{H1234}, word{G1234} และ {(H5678)}
+    const strongsPattern = /([^{]*)\{([HG]\d+)\}(?:\{([^}]*)\})?/g
     let match
 
     while ((match = strongsPattern.exec(text)) !== null) {
@@ -41,23 +42,36 @@ export function parseStrongsNumbers(text: string): StrongsNumber[] {
 }
 
 /**
- * ดึงข้อมูลความหมายจาก Strong's Hebrew Dictionary
+ * ดึงข้อมูลความหมายจาก Strong's Hebrew หรือ Greek Dictionary
  */
 export function getStrongsDefinition(strongsNumber: string) {
-    const entry = strongsHebrewDictionary[strongsNumber]
-    
-    if (!entry) {
-        return undefined
+    if (strongsNumber.startsWith('H')) {
+        const entry = strongsHebrewDictionary[strongsNumber]
+        if (!entry) return undefined
+        return {
+            lemma: entry.lemma,
+            transliteration: entry.xlit,
+            pronunciation: entry.pron,
+            derivation: entry.derivation,
+            strongsDefinition: entry.strongs_def,
+            kjvDefinition: entry.kjv_def
+        }
     }
 
-    return {
-        lemma: entry.lemma,
-        transliteration: entry.xlit,
-        pronunciation: entry.pron,
-        derivation: entry.derivation,
-        strongsDefinition: entry.strongs_def,
-        kjvDefinition: entry.kjv_def
+    if (strongsNumber.startsWith('G')) {
+        const entry = (strongsGreekDictionary as Record<string, { lemma: string; translit: string; derivation?: string; strongs_def: string; kjv_def?: string }>)[strongsNumber]
+        if (!entry) return undefined
+        return {
+            lemma: entry.lemma,
+            transliteration: entry.translit,
+            pronunciation: entry.translit,
+            derivation: entry.derivation,
+            strongsDefinition: entry.strongs_def,
+            kjvDefinition: entry.kjv_def
+        }
     }
+
+    return undefined
 }
 
 /**
@@ -68,7 +82,7 @@ export function renderTextWithStrongsTooltips(text: string): JSX.Element[] {
     let lastIndex = 0
     
     // Regular expression เพื่อจับ pattern ของ Strong's numbers
-    const strongsPattern = /([^{]*)\{(H\d+)\}(?:\{([^}]*)\})?/g
+    const strongsPattern = /([^{]*)\{([HG]\d+)\}(?:\{([^}]*)\})?/g
     let match
     let elementIndex = 0
 
