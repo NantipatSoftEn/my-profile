@@ -1,6 +1,15 @@
 ---
 import BibleReader from '@components/BibleReader'
 import Layout from '@layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import { marked } from 'marked'
+
+const studyEntries = await getCollection('bibleStudy')
+const bookStudyNotes: Record<number, string> = {}
+for (const entry of studyEntries) {
+    const html = await marked(entry.body ?? '')
+    bookStudyNotes[entry.data.book_id] = html
+}
 ---
 
 <Layout title="พระคัมภีร - Bible Reader">
@@ -17,7 +26,7 @@ import Layout from '@layouts/Layout.astro'
             </div>
 
             <!-- Bible Reader Component -->
-            <BibleReader client:only="react" className="w-full max-w-7xl mx-auto" />
+            <BibleReader client:only="react" className="w-full max-w-7xl mx-auto" bookStudyNotes={bookStudyNotes} />
         </div>
     </main>
 </Layout>

@@ -49,4 +49,14 @@ const note = defineCollection({
         }),
 })
 
-export const collections = { blog, note }
+const bibleStudy = defineCollection({
+    loader: glob({ pattern: '*.md', base: './src/content/bible-study' }),
+    schema: z.object({
+        book_id: z.number(),
+        book_name_thai: z.string(),
+        book_name_english: z.string(),
+        testament: z.enum(['old', 'new']),
+    }),
+})
+
+export const collections = { blog, note, bibleStudy }

@@ -26,6 +26,7 @@
         "gsap": "^3.12.5",
         "lodash.kebabcase": "^4.1.1",
         "lucide-react": "^0.513.0",
+        "marked": "^18.0.5",
         "motion": "^12.16.0",
         "remark-collapse": "^0.1.2",
         "remark-toc": "^9.0.0",

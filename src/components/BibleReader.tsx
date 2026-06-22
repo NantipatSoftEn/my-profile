@@ -12,12 +12,17 @@ import { renderTextWithStrongsTooltips } from '@utils/strongsHelper'
 
 interface BibleReaderProps {
     className?: string
+    bookStudyNotes?: Record<number, string>
 }
 
-const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
+const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNotes = {} }) => {
     const [books] = useState<BibleBook[]>(getBibleBooks())
     const [selectedBook, setSelectedBook] = useState<number | null>(null)
+    const [bookInputValue, setBookInputValue] = useState('')
+    const [showBookSuggestions, setShowBookSuggestions] = useState(false)
     const [selectedChapter, setSelectedChapter] = useState<number | null>(null)
+    const [chapterInputValue, setChapterInputValue] = useState('')
+    const [showChapterSuggestions, setShowChapterSuggestions] = useState(false)
     const [chapters, setChapters] = useState<number[]>([])
     const [verses, setVerses] = useState<BibleVerse[]>([])
     const [englishVerses, setEnglishVerses] = useState<BibleVerse[]>([])
@@ -25,7 +30,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
     const [searchResults, setSearchResults] = useState<BibleVerse[]>([])
     const [englishSearchResults, setEnglishSearchResults] = useState<BibleVerse[]>([])
     const [showBilingual, setShowBilingual] = useState(false)
-    const [activeTab, setActiveTab] = useState<'read' | 'search' | 'notes'>(
+    const [activeTab, setActiveTab] = useState<'read' | 'search' | 'notes' | 'study'>(
         'read'
     )
     const [notes, setNotes] = useState<BibleNote[]>([])
@@ -33,12 +38,30 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
     const [selectedVerse, setSelectedVerse] = useState<BibleVerse | null>(null)
     const [showNoteModal, setShowNoteModal] = useState(false)
 
+    const filteredBooks = bookInputValue.trim()
+        ? books.filter(book =>
+              book.name.toLowerCase().includes(bookInputValue.toLowerCase())
+          )
+        : books
+
+    const filteredChapters = chapterInputValue.trim()
+        ? chapters.filter(ch =>
+              String(ch).includes(chapterInputValue.trim())
+          )
+        : chapters
+
     // อัพเดทบทเมื่อเลือกหนังสือ
     useEffect(() => {
         if (selectedBook) {
             const bookChapters = getChaptersByBook(selectedBook)
             setChapters(bookChapters)
-            setSelectedChapter(bookChapters[0] || null)
+            const firstChapter = bookChapters[0] || null
+            setSelectedChapter(firstChapter)
+            setChapterInputValue(firstChapter ? String(firstChapter) : '')
+        } else {
+            setChapters([])
+            setSelectedChapter(null)
+            setChapterInputValue('')
         }
     }, [selectedBook])
 
@@ -142,6 +165,16 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                     >
                         ค้นหา
                     </button>
+                    <button
+                        onClick={() => setActiveTab('study')}
+                        className={`px-4 py-2 rounded-md transition-colors tab-button ${
+                            activeTab === 'study'
+                                ? 'bg-blue-600 text-white'
+                                : 'text-gray-600 hover:text-blue-600'
+                        }`}
+                    >
+                        บริบทเล่ม
+                    </button>
                     {/* <button
                         onClick={() => setActiveTab('notes')}
                         className={`px-4 py-2 rounded-md transition-colors tab-button ${
@@ -187,62 +220,118 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                 <div className="space-y-6 w-full">
                     {/* Book and Chapter Selectors */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        {/* Book Selector */}
-                        <div>
+                        {/* Book Autocomplete */}
+                        <div className="relative">
                             <label
-                                htmlFor="book-select"
+                                htmlFor="book-input"
                                 className="block text-sm font-medium text-gray-700 mb-2"
                             >
                                 เลือกหนังสือ
                             </label>
-                            <select
-                                id="book-select"
-                                value={selectedBook || ''}
-                                onChange={e =>
-                                    setSelectedBook(
-                                        Number(e.target.value) || null
+                            <input
+                                id="book-input"
+                                type="text"
+                                value={bookInputValue}
+                                onChange={e => {
+                                    setBookInputValue(e.target.value)
+                                    setSelectedBook(null)
+                                    setShowBookSuggestions(true)
+                                }}
+                                onFocus={() => setShowBookSuggestions(true)}
+                                onBlur={() =>
+                                    setTimeout(
+                                        () => setShowBookSuggestions(false),
+                                        150
                                     )
                                 }
+                                placeholder="พิมพ์ชื่อหนังสือ..."
+                                autoComplete="off"
                                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            >
-                                <option value="">-- เลือกหนังสือ --</option>
-                                {books.map(book => (
-                                    <option
-                                        key={book.book_id}
-                                        value={book.book_id}
-                                    >
-                                        {book.name}
-                                    </option>
-                                ))}
-                            </select>
+                            />
+                            {showBookSuggestions &&
+                                filteredBooks.length > 0 && (
+                                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto mt-1">
+                                        {filteredBooks.map(book => (
+                                            <li
+                                                key={book.book_id}
+                                                onMouseDown={() => {
+                                                    setSelectedBook(
+                                                        book.book_id
+                                                    )
+                                                    setBookInputValue(book.name)
+                                                    setShowBookSuggestions(
+                                                        false
+                                                    )
+                                                }}
+                                                className={`px-4 py-2 cursor-pointer hover:bg-blue-50 ${
+                                                    selectedBook ===
+                                                    book.book_id
+                                                        ? 'bg-blue-100 font-medium'
+                                                        : ''
+                                                }`}
+                                            >
+                                                {book.name}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                         </div>
 
-                        {/* Chapter Selector */}
-                        <div>
+                        {/* Chapter Autocomplete */}
+                        <div className="relative">
                             <label
-                                htmlFor="chapter-select"
+                                htmlFor="chapter-input"
                                 className="block text-sm font-medium text-gray-700 mb-2"
                             >
                                 เลือกบท
                             </label>
-                            <select
-                                id="chapter-select"
-                                value={selectedChapter || ''}
-                                onChange={e =>
-                                    setSelectedChapter(
-                                        Number(e.target.value) || null
+                            <input
+                                id="chapter-input"
+                                type="text"
+                                value={chapterInputValue}
+                                onChange={e => {
+                                    setChapterInputValue(e.target.value)
+                                    setSelectedChapter(null)
+                                    setShowChapterSuggestions(true)
+                                }}
+                                onFocus={() => setShowChapterSuggestions(true)}
+                                onBlur={() =>
+                                    setTimeout(
+                                        () => setShowChapterSuggestions(false),
+                                        150
                                     )
                                 }
                                 disabled={!selectedBook}
-                                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
-                            >
-                                <option value="">-- เลือกบท --</option>
-                                {chapters.map(chapter => (
-                                    <option key={chapter} value={chapter}>
-                                        บทที่ {chapter}
-                                    </option>
-                                ))}
-                            </select>
+                                placeholder="พิมพ์เลขบท..."
+                                autoComplete="off"
+                                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                            />
+                            {showChapterSuggestions &&
+                                filteredChapters.length > 0 && (
+                                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto mt-1">
+                                        {filteredChapters.map(chapter => (
+                                            <li
+                                                key={chapter}
+                                                onMouseDown={() => {
+                                                    setSelectedChapter(chapter)
+                                                    setChapterInputValue(
+                                                        String(chapter)
+                                                    )
+                                                    setShowChapterSuggestions(
+                                                        false
+                                                    )
+                                                }}
+                                                className={`px-4 py-2 cursor-pointer hover:bg-blue-50 ${
+                                                    selectedChapter === chapter
+                                                        ? 'bg-blue-100 font-medium'
+                                                        : ''
+                                                }`}
+                                            >
+                                                บทที่ {chapter}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                         </div>
                     </div>
 
@@ -407,9 +496,35 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '' }) => {
                 </div>
             )}
 
-            {/* Notes Tab */}
-            {activeTab === 'notes' && (
+            {/* Study Tab */}
+            {activeTab === 'study' && (
                 <div className="space-y-6 w-full">
+                    {!selectedBook ? (
+                        <div className="bg-white rounded-lg shadow-md p-12 text-center">
+                            <p className="text-gray-500 text-lg">
+                                กรุณาเลือกหนังสือก่อน เพื่อดูข้อมูลบริบทเล่ม
+                            </p>
+                        </div>
+                    ) : bookStudyNotes[selectedBook] ? (
+                        <div className="bg-white rounded-lg shadow-md p-8 w-full prose prose-blue max-w-none">
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: bookStudyNotes[selectedBook],
+                                }}
+                            />
+                        </div>
+                    ) : (
+                        <div className="bg-white rounded-lg shadow-md p-12 text-center">
+                            <p className="text-gray-500 text-lg">
+                                ยังไม่มีข้อมูลบริบทสำหรับหนังสือเล่มนี้
+                            </p>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* Notes Tab */}
+            {activeTab === 'notes' && (                <div className="space-y-6 w-full">
                     <div className="bg-white rounded-lg shadow-md p-8 w-full">
                         <h3 className="text-xl font-semibold text-gray-800 mb-6">
                             โน้ตทั้งหมด ({notes.length} รายการ)
