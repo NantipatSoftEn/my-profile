@@ -86,3 +86,9 @@ description:  โยบ ep.2 คำถามสำคัญ l พระคัม
 ![alt text](image-3.png)
 
 โยบไม่ได้สนับสนุนการkillตัวตาย
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+ความทุกข์จะทำให้มุมมองเกี่ยวกับพระเจ้าผิดเพี้ยน
