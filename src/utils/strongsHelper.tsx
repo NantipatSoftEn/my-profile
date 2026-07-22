@@ -156,7 +156,7 @@ export function StrongsTooltip({ word, strongsNumber, definition }: StrongsToolt
 
     return (
         <span className="strongs-tooltip-container relative inline-block">
-            <span className="strongs-word cursor-help underline decoration-dotted text-blue-600 hover:text-blue-800">
+            <span className="strongs-word cursor-help underline decoration-dotted text-skin-accent hover:text-skin-accent/80">
                 {word}
             </span>
             <div className="strongs-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg shadow-lg opacity-0 invisible hover:opacity-100 hover:visible transition-all duration-300 z-50 min-w-80 max-w-96">

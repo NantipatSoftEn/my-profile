@@ -144,13 +144,13 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
         <div className={`bible-reader ${className}`}>
             {/* Tab Navigation */}
             <div className="mb-6">
-                <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg tabs overflow-x-auto">
+                <div className="flex space-x-1 bg-skin-card p-1 rounded-lg tabs overflow-x-auto">
                     <button
                         onClick={() => setActiveTab('read')}
                         className={`px-4 py-2 rounded-md transition-colors tab-button ${
                             activeTab === 'read'
-                                ? 'bg-blue-600 text-white'
-                                : 'text-gray-600 hover:text-blue-600'
+                                ? 'bg-skin-accent text-skin-inverted'
+                                : 'text-skin-base/70 hover:text-skin-accent'
                         }`}
                     >
                         อ่านพระคัมภีร
@@ -159,8 +159,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                         onClick={() => setActiveTab('search')}
                         className={`px-4 py-2 rounded-md transition-colors tab-button ${
                             activeTab === 'search'
-                                ? 'bg-blue-600 text-white'
-                                : 'text-gray-600 hover:text-blue-600'
+                                ? 'bg-skin-accent text-skin-inverted'
+                                : 'text-skin-base/70 hover:text-skin-accent'
                         }`}
                     >
                         ค้นหา
@@ -169,8 +169,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                         onClick={() => setActiveTab('study')}
                         className={`px-4 py-2 rounded-md transition-colors tab-button ${
                             activeTab === 'study'
-                                ? 'bg-blue-600 text-white'
-                                : 'text-gray-600 hover:text-blue-600'
+                                ? 'bg-skin-accent text-skin-inverted'
+                                : 'text-skin-base/70 hover:text-skin-accent'
                         }`}
                     >
                         บริบทเล่ม
@@ -179,8 +179,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                         onClick={() => setActiveTab('notes')}
                         className={`px-4 py-2 rounded-md transition-colors tab-button ${
                             activeTab === 'notes'
-                                ? 'bg-blue-600 text-white'
-                                : 'text-gray-600 hover:text-blue-600'
+                                ? 'bg-skin-accent text-skin-inverted'
+                                : 'text-skin-base/70 hover:text-skin-accent'
                         }`}
                     >
                         โน้ต ({notes.length})
@@ -189,14 +189,14 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
 
                 {/* Language Toggle */}
                 <div className="flex items-center justify-center mt-4 space-x-4">
-                    <span className="text-sm text-gray-600">ภาษา:</span>
-                    <div className="flex bg-gray-100 rounded-lg p-1">
+                    <span className="text-sm text-skin-base/70">ภาษา:</span>
+                    <div className="flex bg-skin-card rounded-lg p-1">
                         <button
                             onClick={() => setShowBilingual(false)}
                             className={`px-3 py-1 rounded-md text-sm transition-colors ${
                                 showBilingual === false
-                                    ? 'bg-white text-gray-900 shadow'
-                                    : 'text-gray-600 hover:text-gray-900'
+                                    ? 'bg-skin-fill text-skin-base shadow'
+                                    : 'text-skin-base/70 hover:text-skin-base'
                             }`}
                         >
                             ไทย
@@ -205,8 +205,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                             onClick={() => setShowBilingual(true)}
                             className={`px-3 py-1 rounded-md text-sm transition-colors ${
                                 showBilingual
-                                    ? 'bg-white text-gray-900 shadow'
-                                    : 'text-gray-600 hover:text-gray-900'
+                                    ? 'bg-skin-fill text-skin-base shadow'
+                                    : 'text-skin-base/70 hover:text-skin-base'
                             }`}
                         >
                             ไทย + English
@@ -224,7 +224,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                         <div className="relative">
                             <label
                                 htmlFor="book-input"
-                                className="block text-sm font-medium text-gray-700 mb-2"
+                                className="block text-sm font-medium text-skin-base mb-2"
                             >
                                 เลือกหนังสือ
                             </label>
@@ -246,11 +246,11 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                 }
                                 placeholder="พิมพ์ชื่อหนังสือ..."
                                 autoComplete="off"
-                                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full p-3 border border-skin-line bg-skin-fill text-skin-base placeholder:text-skin-base/50 rounded-md focus:ring-2 focus:ring-skin-accent focus:border-skin-accent"
                             />
                             {showBookSuggestions &&
                                 filteredBooks.length > 0 && (
-                                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto mt-1">
+                                    <ul className="absolute z-10 w-full bg-skin-fill border border-skin-line text-skin-base rounded-md shadow-lg max-h-60 overflow-auto mt-1">
                                         {filteredBooks.map(book => (
                                             <li
                                                 key={book.book_id}
@@ -263,10 +263,10 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                                         false
                                                     )
                                                 }}
-                                                className={`px-4 py-2 cursor-pointer hover:bg-blue-50 ${
+                                                className={`px-4 py-2 cursor-pointer hover:bg-skin-accent/10 ${
                                                     selectedBook ===
                                                     book.book_id
-                                                        ? 'bg-blue-100 font-medium'
+                                                        ? 'bg-skin-accent/20 font-medium'
                                                         : ''
                                                 }`}
                                             >
@@ -281,7 +281,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                         <div className="relative">
                             <label
                                 htmlFor="chapter-input"
-                                className="block text-sm font-medium text-gray-700 mb-2"
+                                className="block text-sm font-medium text-skin-base mb-2"
                             >
                                 เลือกบท
                             </label>
@@ -304,11 +304,11 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                 disabled={!selectedBook}
                                 placeholder="พิมพ์เลขบท..."
                                 autoComplete="off"
-                                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                                className="w-full p-3 border border-skin-line bg-skin-fill text-skin-base placeholder:text-skin-base/50 rounded-md focus:ring-2 focus:ring-skin-accent focus:border-skin-accent disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                             {showChapterSuggestions &&
                                 filteredChapters.length > 0 && (
-                                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto mt-1">
+                                    <ul className="absolute z-10 w-full bg-skin-fill border border-skin-line text-skin-base rounded-md shadow-lg max-h-60 overflow-auto mt-1">
                                         {filteredChapters.map(chapter => (
                                             <li
                                                 key={chapter}
@@ -321,9 +321,9 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                                         false
                                                     )
                                                 }}
-                                                className={`px-4 py-2 cursor-pointer hover:bg-blue-50 ${
+                                                className={`px-4 py-2 cursor-pointer hover:bg-skin-accent/10 ${
                                                     selectedChapter === chapter
-                                                        ? 'bg-blue-100 font-medium'
+                                                        ? 'bg-skin-accent/20 font-medium'
                                                         : ''
                                                 }`}
                                             >
@@ -337,8 +337,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
 
                     {/* Verses Display */}
                     {verses.length > 0 && (
-                        <div className="bg-white rounded-lg shadow-md p-8 w-full">
-                            <h2 className="text-xl font-bold text-gray-800 mb-4">
+                        <div className="bg-skin-card rounded-lg shadow-md p-8 w-full">
+                            <h2 className="text-xl font-bold text-skin-base mb-4">
                                 {verses[0]?.book_name} บทที่ {selectedChapter}
                             </h2>
                             <div className="space-y-3">
@@ -355,17 +355,17 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                             key={`${verse.book}-${verse.chapter}-${verse.verse}`}
                                             className="group relative verse-container"
                                         >
-                                            <div className="flex items-start space-x-4 p-4 rounded-md hover:bg-gray-50 w-full">
-                                                <span className="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-sm font-medium">
+                                            <div className="flex items-start space-x-4 p-4 rounded-md hover:bg-skin-accent/10 w-full">
+                                                <span className="flex-shrink-0 w-10 h-10 bg-skin-accent/20 text-skin-accent rounded-full flex items-center justify-center text-sm font-medium">
                                                     {verse.verse}
                                                 </span>
                                                 <div className="flex-1 min-w-0 w-full">
                                                     <div className={showBilingual ? "space-y-3" : ""}>
-                                                        <p className="text-gray-800 leading-relaxed verse-text text-lg">
+                                                        <p className="text-skin-base leading-relaxed verse-text text-lg">
                                                             {verse.text}
                                                         </p>
                                                         {englishVerse && (
-                                                            <p className={`leading-relaxed verse-text text-lg ${showBilingual ? 'text-gray-600 italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r mt-3' : 'text-blue-700 mt-2'}`}>
+                                                            <p className={`leading-relaxed verse-text text-lg ${showBilingual ? 'text-skin-base/80 italic border-l-4 border-skin-accent/40 pl-4 bg-skin-accent/10 p-3 rounded-r mt-3' : 'text-skin-accent mt-2'}`}>
                                                                 {showBilingual && renderTextWithStrongsTooltips(englishVerse.text)}
                                                             </p>
                                                         )}
@@ -378,15 +378,15 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                                                         key={
                                                                             note.id
                                                                         }
-                                                                        className="bg-yellow-50 border-l-4 border-yellow-400 p-2 rounded"
+                                                                        className="bg-yellow-50 dark:bg-yellow-500/10 border-l-4 border-yellow-400 dark:border-yellow-500/60 p-2 rounded"
                                                                     >
-                                                                        <p className="text-sm text-gray-700">
+                                                                        <p className="text-sm text-skin-base/90">
                                                                             {
                                                                                 note.note
                                                                             }
                                                                         </p>
                                                                         <div className="flex justify-between items-center mt-1">
-                                                                            <span className="text-xs text-gray-500">
+                                                                            <span className="text-xs text-skin-base/60">
                                                                                 {note.updated.toLocaleDateString(
                                                                                     'th-TH'
                                                                                 )}
@@ -412,7 +412,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                                     onClick={() =>
                                                         openNoteModal(verse)
                                                     }
-                                                    className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 hover:text-blue-800 text-sm"
+                                                    className="opacity-0 group-hover:opacity-100 transition-opacity text-skin-accent hover:text-skin-accent/80 text-sm"
                                                 >
                                                     + โน้ต
                                                 </button> */}
@@ -432,7 +432,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                     <div>
                         <label
                             htmlFor="search-input"
-                            className="block text-sm font-medium text-gray-700 mb-2"
+                            className="block text-sm font-medium text-skin-base mb-2"
                         >
                             ค้นหาข้อพระคัมภีร
                         </label>
@@ -442,13 +442,13 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                             value={searchQuery}
                             onChange={e => setSearchQuery(e.target.value)}
                             placeholder="พิมพ์คำที่ต้องการค้นหา..."
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full p-3 border border-skin-line bg-skin-fill text-skin-base placeholder:text-skin-base/50 rounded-md focus:ring-2 focus:ring-skin-accent focus:border-skin-accent"
                         />
                     </div>
 
                     {searchResults.length > 0 && (
-                        <div className="bg-white rounded-lg shadow-md p-8 w-full">
-                            <h3 className="text-xl font-semibold text-gray-800 mb-6">
+                        <div className="bg-skin-card rounded-lg shadow-md p-8 w-full">
+                            <h3 className="text-xl font-semibold text-skin-base mb-6">
                                 ผลการค้นหา ({searchResults.length} รายการ)
                             </h3>
                             <div className="space-y-6">
@@ -458,10 +458,10 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                     return (
                                         <div
                                             key={`${verse.book}-${verse.chapter}-${verse.verse}`}
-                                            className="border-b border-gray-200 pb-4 last:border-b-0"
+                                            className="border-b border-skin-line pb-4 last:border-b-0"
                                         >
                                             <div className="flex justify-between items-start mb-2">
-                                                <h4 className="font-medium text-blue-600">
+                                                <h4 className="font-medium text-skin-accent">
                                                     {formatVerseReference(
                                                         verse.book_name,
                                                         verse.chapter,
@@ -472,17 +472,17 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                                     onClick={() =>
                                                         openNoteModal(verse)
                                                     }
-                                                    className="text-sm text-gray-500 hover:text-blue-600"
+                                                    className="text-sm text-skin-base/60 hover:text-skin-accent"
                                                 >
                                                     + โน้ต
                                                 </button> */}
                                             </div>
                                             <div className={showBilingual ? "space-y-3" : ""}>
-                                                <p className="text-gray-800 text-lg leading-relaxed">
+                                                <p className="text-skin-base text-lg leading-relaxed">
                                                     {verse.text}
                                                 </p>
                                                 {englishVerse && (
-                                                    <p className={`text-lg leading-relaxed ${showBilingual ? 'text-gray-600 italic border-l-4 border-blue-300 pl-4 bg-blue-50 p-3 rounded-r mt-3' : 'text-blue-700 mt-2'}`}>
+                                                    <p className={`text-lg leading-relaxed ${showBilingual ? 'text-skin-base/80 italic border-l-4 border-skin-accent/40 pl-4 bg-skin-accent/10 p-3 rounded-r mt-3' : 'text-skin-accent mt-2'}`}>
                                                         {renderTextWithStrongsTooltips(englishVerse.text)}
                                                     </p>
                                                 )}
@@ -500,13 +500,13 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
             {activeTab === 'study' && (
                 <div className="space-y-6 w-full">
                     {!selectedBook ? (
-                        <div className="bg-white rounded-lg shadow-md p-12 text-center">
-                            <p className="text-gray-500 text-lg">
+                        <div className="bg-skin-card rounded-lg shadow-md p-12 text-center">
+                            <p className="text-skin-base/70 text-lg">
                                 กรุณาเลือกหนังสือก่อน เพื่อดูข้อมูลบริบทเล่ม
                             </p>
                         </div>
                     ) : bookStudyNotes[selectedBook] ? (
-                        <div className="bg-white rounded-lg shadow-md p-8 w-full prose prose-blue max-w-none">
+                        <div className="bg-skin-card rounded-lg shadow-md p-8 w-full prose max-w-none">
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: bookStudyNotes[selectedBook],
@@ -514,8 +514,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                             />
                         </div>
                     ) : (
-                        <div className="bg-white rounded-lg shadow-md p-12 text-center">
-                            <p className="text-gray-500 text-lg">
+                        <div className="bg-skin-card rounded-lg shadow-md p-12 text-center">
+                            <p className="text-skin-base/70 text-lg">
                                 ยังไม่มีข้อมูลบริบทสำหรับหนังสือเล่มนี้
                             </p>
                         </div>
@@ -525,12 +525,12 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
 
             {/* Notes Tab */}
             {activeTab === 'notes' && (                <div className="space-y-6 w-full">
-                    <div className="bg-white rounded-lg shadow-md p-8 w-full">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-6">
+                    <div className="bg-skin-card rounded-lg shadow-md p-8 w-full">
+                        <h3 className="text-xl font-semibold text-skin-base mb-6">
                             โน้ตทั้งหมด ({notes.length} รายการ)
                         </h3>
                         {notes.length === 0 ? (
-                            <p className="text-gray-500 text-center py-8">
+                            <p className="text-skin-base/70 text-center py-8">
                                 ยังไม่มีโน้ต
                             </p>
                         ) : (
@@ -547,7 +547,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                             className="border rounded-lg p-4"
                                         >
                                             <div className="flex justify-between items-start mb-2">
-                                                <h4 className="font-medium text-blue-600">
+                                                <h4 className="font-medium text-skin-accent">
                                                     {formatVerseReference(
                                                         note.bookName,
                                                         note.chapter,
@@ -565,10 +565,10 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                                     ลบ
                                                 </button> */}
                                             </div>
-                                            <p className="text-gray-800 mb-2">
+                                            <p className="text-skin-base mb-2">
                                                 {note.note}
                                             </p>
-                                            <p className="text-xs text-gray-500">
+                                            <p className="text-xs text-skin-base/60">
                                                 อัพเดทล่าสุด:{' '}
                                                 {note.updated.toLocaleDateString(
                                                     'th-TH'
@@ -588,8 +588,8 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
             {/* Note Modal */}
             {showNoteModal && selectedVerse && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg p-6 w-full max-w-md">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                    <div className="bg-skin-card rounded-lg p-6 w-full max-w-md">
+                        <h3 className="text-lg font-semibold text-skin-base mb-4">
                             เพิ่มโน้ตสำหรับ{' '}
                             {formatVerseReference(
                                 selectedVerse.book_name,
@@ -597,7 +597,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                 selectedVerse.verse
                             )}
                         </h3>
-                        <p className="text-gray-600 mb-4 text-sm bg-gray-50 p-3 rounded">
+                        <p className="text-skin-base/80 mb-4 text-sm bg-skin-fill p-3 rounded">
                             {selectedVerse.text}
                         </p>
                         <textarea
@@ -605,13 +605,13 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                             onChange={e => setNewNote(e.target.value)}
                             placeholder="เขียนโน้ตของคุณ..."
                             rows={4}
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-4"
+                            className="w-full p-3 border border-skin-line bg-skin-fill text-skin-base placeholder:text-skin-base/50 rounded-md focus:ring-2 focus:ring-skin-accent focus:border-skin-accent mb-4"
                         />
                         <div className="flex space-x-3">
                             <button
                                 onClick={handleAddNote}
                                 disabled={!newNote.trim()}
-                                className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                                className="flex-1 bg-skin-accent text-skin-inverted px-4 py-2 rounded-md hover:bg-skin-accent/90 disabled:opacity-40 disabled:cursor-not-allowed"
                             >
                                 บันทึก
                             </button>
@@ -621,7 +621,7 @@ const BibleReader: React.FC<BibleReaderProps> = ({ className = '', bookStudyNote
                                     setSelectedVerse(null)
                                     setNewNote('')
                                 }}
-                                className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
+                                className="flex-1 border border-skin-line text-skin-base px-4 py-2 rounded-md hover:bg-skin-accent/10"
                             >
                                 ยกเลิก
                             </button>

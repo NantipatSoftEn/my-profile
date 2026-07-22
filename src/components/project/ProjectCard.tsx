@@ -102,7 +102,7 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                 </div>
                 <div className="overflow-hidden">
                     <div className="project-text flex items-center justify-between">
-                        <h3 className=" text-marrsgreen dark:text-carrigreen text-lg my-1 font-medium">
+                        <h3 className=" text-skin-accent text-lg my-1 font-medium">
                             {project.title}
                         </h3>
                         <div className="flex items-center space-x-5 sm:space-x-3 my-2 sm:my-0 mr-[0.1rem]">
@@ -139,13 +139,13 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                                 title={`See '${project.title}' on Github`}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="focus-visible:outline-marrsgreen dark:focus-visible:outline-carrigreen mr-1 rounded-full"
+                                className="focus-visible:outline-skin-fill mr-1 rounded-full"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
                                     height="24"
-                                    className="scale-150 sm:scale-125 opacity-75 hover:-rotate-12 fill-black dark:fill-bglight"
+                                    className="scale-150 sm:scale-125 opacity-75 hover:-rotate-12 fill-skin-base"
                                 >
                                     <path
                                         fillRule="evenodd"
@@ -159,11 +159,11 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                                 title={`See live demo of '${project.title}'`}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="focus-visible:outline-marrsgreen dark:focus-visible:outline-carrigreen mr-8 rounded-full"
+                                className="focus-visible:outline-skin-fill mr-8 rounded-full"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="h-7 w-7 scale-125 sm:scale-100 bg-cardlight dark:bg-carddark hover:bg-gray-300 dark:hover:bg-gray-600 rounded-full p-1 hover:-rotate-12"
+                                    className="h-7 w-7 scale-125 sm:scale-100 bg-skin-card hover:bg-skin-accent/20 rounded-full p-1 hover:-rotate-12"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -189,7 +189,7 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                     {project.tags.map(tag => (
                         <li
                             key={tag}
-                            className={`project-tags mr-2 my-1 bg-[#E2EFEF] dark:bg-carddark py-1 px-2 rounded`}
+                            className={`project-tags mr-2 my-1 bg-skin-accent/10 text-skin-base py-1 px-2 rounded`}
                         >
                             {tag}
                         </li>

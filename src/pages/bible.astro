@@ -17,10 +17,10 @@ for (const entry of studyEntries) {
         <div class="max-w-full mx-auto">
             <!-- Header -->
             <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                <h1 class="text-4xl font-bold text-skin-base mb-4">
                     📖 BIBLE KJV
                 </h1>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-lg text-skin-base/80 max-w-2xl mx-auto">
                   จดความลึกซึ่งของ bible ของผมเองเพื่อเอาไว้ทบทวน
                 </p>
             </div>
@@ -48,15 +48,15 @@ for (const entry of studyEntries) {
     }
 
     :global(.bible-reader ::-webkit-scrollbar-track) {
-        @apply bg-gray-100 rounded-full;
+        @apply bg-skin-fill rounded-full;
     }
 
     :global(.bible-reader ::-webkit-scrollbar-thumb) {
-        @apply bg-gray-400 rounded-full;
+        @apply bg-skin-card-muted rounded-full;
     }
 
     :global(.bible-reader ::-webkit-scrollbar-thumb:hover) {
-        @apply bg-gray-600;
+        @apply bg-skin-accent/70;
     }
 
     /* Better verse text sizing and spacing */
@@ -110,7 +110,7 @@ for (const entry of studyEntries) {
     :global(.bible-reader select:focus),
     :global(.bible-reader input:focus),
     :global(.bible-reader textarea:focus) {
-        @apply ring-2 ring-blue-500 ring-offset-2 outline-none;
+        @apply ring-2 ring-skin-accent outline-none;
     }
 
     /* Animation for verse appearance */
@@ -140,7 +140,7 @@ for (const entry of studyEntries) {
             background-color: transparent;
         }
         50% {
-            background-color: #fef3c7;
+            background-color: rgba(var(--color-accent), 0.25);
         }
     }
 
@@ -154,12 +154,12 @@ for (const entry of studyEntries) {
         cursor: help;
         text-decoration: underline;
         text-decoration-style: dotted;
-        color: #2563eb;
+        color: rgb(var(--color-accent));
         transition: color 0.2s ease;
     }
 
     :global(.strongs-word:hover) {
-        color: #1d4ed8;
+        color: rgba(var(--color-accent), 0.8);
     }
 
     :global(.strongs-tooltip) {
