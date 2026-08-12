@@ -30,7 +30,7 @@ description:  โยบ ep.7
 โยบแสวงหาความสัมพันแบบลึกซึ่งกับพระเจ้า  ในโยบบที่ 29
 
 
-![alt text](image.png)
-![alt text](image-1.png)
+![alt text](/assets/choojai-project-job-ep7/image.png)
+![alt text](/assets/choojai-project-job-ep7/image-1.png)
 
-![alt text](image-2.png)
+![alt text](/assets/choojai-project-job-ep7/image-2.png)
